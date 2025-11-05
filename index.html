@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shaddy Reinigung Services</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+  <!-- Site CSS -->
+  <link rel="stylesheet" href="styles.css" />
+
+</head>
+<body>
+
+  <!-- Site-wide subtle bubbles background -->
+  <div class="page-bubbles" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar">
+    <div class="nav-inner">
+      <div class="nav-left">
+        <!-- Replace the placeholder LOGO_URL below with your own hosted logo image URL -->
+        <img src="https://i.imgur.com/gc5FCRr.png" alt="Shaddy Reinigung Logo" class="nav-logo">
+        <div class="brand-name">Shaddy Reinigung</div>
+      </div>
+      <div class="nav-right">
+        <nav class="nav-links" id="navLinks">
+          <a href="#home" class="active">Home</a>
+          <a href="#services">Services</a>
+          <a href="#booking">Book</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <a href="#booking" class="book-btn">Book Now</a>
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section id="home" class="hero hero-slideshow">
+    <div class="slide-bg"></div><div class="slide-bg"></div><div class="slide-bg"></div>
+    <div class="bubbles" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="slide-copy">
+      <h1 class="slide-title"></h1>
+      <p class="slide-sub"></p>
+      <a href="#booking" class="slide-cta">Book Now</a>
+    </div>
+    <div class="hero-controls">
+      <button class="hero-prev" aria-label="Previous">‹</button>
+      <div class="hero-dots"></div>
+      <button class="hero-next" aria-label="Next">›</button>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section id="services" class="section">
+    <div class="wrap">
+      <h2 style="font-family:var(--font-fancy);margin:0 0 14px">Our Cleaning Services</h2>
+      <p style="margin-top:0;color:#cfefff">Choose a service to see details and pre-fill the booking form.</p>
+      <div class="grid">
+
+        <article class="service-card reveal" tabindex="0">
+          <img class="service-img" loading="lazy" alt="House and apartment cleaning" src="https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg"/>
+          <div class="service-pad">
+            <div class="service-head"><span class="service-emoji">🏠</span><div class="service-title">House / Apartment Cleaning</div></div>
+            <ul class="service-list"><li>All rooms & living spaces</li><li>General dusting, wiping, vacuuming</li><li>Floors mopped & trash removed</li></ul>
+            <div class="service-meta"><a class="service-btn" data-service="House Cleaning" href="#booking">Book House Cleaning</a></div>
+          </div>
+        </article>
+
+        <article class="service-card reveal" tabindex="0">
+          <img class="service-img" loading="lazy" alt="Office and commercial cleaning" src="https://media.istockphoto.com/id/518586238/photo/commercial-cleaning-contractors.jpg?b=1&s=612x612&w=0&k=20&c=uxyuf7cnTS5AxJWpF0MirOHZqn8J6bCNX-Wsq-vF8qY="/>
+          <div class="service-pad">
+            <div class="service-head"><span class="service-emoji">🏢</span><div class="service-title">Office & Commercial</div></div>
+            <ul class="service-list"><li>After-hours or scheduled daytime</li><li>Desks, meeting rooms, reception</li><li>Consumables & bins serviced</li></ul>
+            <div class="service-meta"><a class="service-btn" data-service="Office Cleaning" href="#booking">Book Office Cleaning</a></div>
+          </div>
+        </article>
+
+        <article class="service-card reveal" tabindex="0">
+          <img class="service-img" loading="lazy" alt="Deep cleaning service" src="https://images.pexels.com/photos/9462305/pexels-photo-9462305.jpeg"/>
+          <div class="service-pad">
+            <div class="service-head"><span class="service-emoji">🧼</span><div class="service-title">Deep Cleaning</div></div>
+            <ul class="service-list"><li>Behind/under appliances & furniture</li><li>Grout, scale, and detail work</li><li>Ideal for seasonal refresh</li></ul>
+            <div class="service-meta"><a class="service-btn" data-service="Deep Cleaning" href="#booking">Book Deep Cleaning</a></div>
+          </div>
+        </article>
+
+        <article class="service-card reveal" tabindex="0">
+          <img class="service-img" loading="lazy" alt="Move-in and move-out cleaning" src="https://media.istockphoto.com/id/623876738/photo/move-cardboard-boxes-and-cleaning-things.jpg?b=1&s=612x612&w=0&k=20&c=NvwU0M7KEyaofHwPIJLZwIjsdb7w4ru4icxz9bl8T6o="/>
+          <div class="service-pad">
+            <div class="service-head"><span class="service-emoji">🚚</span><div class="service-title">Move‑In / Move‑Out</div></div>
+            <ul class="service-list"><li>End-of-tenancy standards</li><li>Inside cupboards, oven, fridge</li><li>Checklist-based quality control</li></ul>
+            <div class="service-meta"><a class="service-btn" data-service="Move-In / Move-Out" href="#booking">Book Move Service</a></div>
+          </div>
+        </article>
+
+        <article class="service-card reveal" tabindex="0">
+          <img class="service-img" loading="lazy" alt="Window and glass cleaning" src="https://images.pexels.com/photos/713297/pexels-photo-713297.jpeg"/>
+          <div class="service-pad">
+            <div class="service-head"><span class="service-emoji">🪟</span><div class="service-title">Window & Glass</div></div>
+            <ul class="service-list"><li>Interior & accessible exterior panes</li><li>Frames, sills, and tracks</li><li>Streak‑free finish</li></ul>
+            <div class="service-meta"><a class="service-btn" data-service="Window Cleaning" href="#booking">Book Window Cleaning</a></div>
+          </div>
+        </article>
+
+        <article class="service-card reveal" tabindex="0">
+          <img class="service-img" loading="lazy" alt="Post-construction cleaning" src="https://media.istockphoto.com/id/1300553713/photo/construction-garbage.jpg?b=1&s=612x612&w=0&k=20&c=XMlt43qkdISM0rziDaQhSp1IxuUQ91P0zqA51EB-6K4="/>
+          <div class="service-pad">
+            <div class="service-head"><span class="service-emoji">🧽</span><div class="service-title">Post‑Construction</div></div>
+            <ul class="service-list"><li>Dust removal & fine detail</li><li>Paint/adhesive spot cleaning</li><li>Site readiness handover</li></ul>
+            <div class="service-meta"><a class="service-btn" data-service="Post-Construction" href="#booking">Book Post‑Construction</a></div>
+          </div>
+        </article>
+
+        <article class="service-card reveal" tabindex="0">
+          <img class="service-img" loading="lazy" alt="Airbnb short-stay cleaning" src="https://images.pexels.com/photos/6195195/pexels-photo-6195195.jpeg"/>
+          <div class="service-pad">
+            <div class="service-head"><span class="service-emoji">🧹</span><div class="service-title">Airbnb / Short‑Stay</div></div>
+            <ul class="service-list"><li>Fast turnaround & linen change</li><li>Consumables restock</li><li>Host checklist compliance</li></ul>
+            <div class="service-meta"><a class="service-btn" data-service="Airbnb / Short‑Stay" href="#booking">Book Airbnb Cleaning</a></div>
+          </div>
+        </article>
+
+        <article class="service-card reveal" tabindex="0">
+          <img class="service-img" loading="lazy" alt="Carpet and upholstery cleaning" src="https://media.istockphoto.com/id/1417833187/photo/professional-cleaner-vacuuming-a-carpet.jpg?b=1&s=612x612&w=0&k=20&c=-hIxa-9UCDsDzdNrdRQI67WZvhrU34PKejODkGMi-jA="/>
+          <div class="service-pad">
+            <div class="service-head"><span class="service-emoji">🧼</span><div class="service-title">Carpet & Upholstery</div></div>
+            <ul class="service-list"><li>Spot treatment & deodorizing</li><li>Hot-water extraction (on request)</li><li>Rug & sofa care</li></ul>
+            <div class="service-meta"><a class="service-btn" data-service="Carpet & Upholstery" href="#booking">Book Carpet/Upholstery</a></div>
+          </div>
+        </article>
+
+        <article class="service-card reveal" tabindex="0">
+          <img class="service-img" loading="lazy" alt="Pressure washing services" src="https://images.pexels.com/photos/14965464/pexels-photo-14965464.jpeg"/>
+          <div class="service-pad">
+            <div class="service-head"><span class="service-emoji">💦</span><div class="service-title">Pressure Washing</div></div>
+            <ul class="service-list"><li>Patios, driveways, facades</li><li>Graffiti & stain removal</li><li>Moss & algae treatment</li></ul>
+            <div class="service-meta"><a class="service-btn" data-service="Pressure Washing" href="#booking">Book Pressure Washing</a></div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BOOKING ===== -->
+  <section id="booking" class="booking-container">
+    <h2>Book Your Cleaning Now</h2>
+    <p class="lead">Submit your request and we’ll reply from <strong>info@shaddyreinigungservice.com</strong> <span class="badge-mail">(email created from your form)</span></p>
+
+    <form id="bookingForm" action="https://formspree.io/f/mldoody1" method="POST">
+      <div class="form-grid">
+        <div><label for="name">Full Name</label><input id="name" name="Name" required placeholder="Your Name" /></div>
+        <div><label for="email">Email</label><input id="email" name="Email" type="email" required placeholder="you@example.com" /></div>
+        <div><label for="phone">Phone</label><input id="phone" name="Phone" type="tel" placeholder="+49 ..." /></div>
+        <div><label for="address">Address</label><input id="address" name="Address" placeholder="Street, No." /></div>
+        <div><label for="postcode">Postcode / City</label><input id="postcode" name="Postcode / City" placeholder="76133 Karlsruhe" /></div>
+        <div>
+          <label for="service">Service</label>
+          <select id="service" name="Service" required>
+            <option value="">Select Service</option>
+            <option>House Cleaning</option>
+            <option>Office Cleaning</option>
+            <option>Deep Cleaning</option>
+            <option>Move-In / Move-Out</option>
+            <option>Window Cleaning</option>
+            <option>Post-Construction</option>
+            <option>Airbnb / Short‑Stay</option>
+            <option>Carpet & Upholstery</option>
+            <option>Pressure Washing</option>
+          </select>
+        </div>
+        <div><label for="frequency">Frequency</label><select id="frequency" name="Frequency"><option>One‑time</option><option>Weekly</option><option>Bi‑weekly</option><option>Monthly</option></select></div>
+        <div><label for="date">Preferred Date</label><input id="date" name="Preferred Date" type="date" required /></div>
+        <div><label for="time">Preferred Time</label><input id="time" name="Preferred Time" type="time" /></div>
+        <div><label for="size">Property Size</label><select id="size" name="Property Size"><option>Studio / 1 Zimmer</option><option>2 Zimmer</option><option>3 Zimmer</option><option>4+ Zimmer</option><option>Office: &lt; 100 m²</option><option>Office: 100–300 m²</option><option>Office: 300+ m²</option></select></div>
+      </div>
+
+      <div>
+        <label>Extras</label>
+        <div class="checkbox-row">
+          <label><input type="checkbox" name="Extras" value="Inside Oven"> Inside Oven</label>
+          <label><input type="checkbox" name="Extras" value="Inside Fridge"> Inside Fridge</label>
+          <label><input type="checkbox" name="Extras" value="Windows"> Windows</label>
+          <label><input type="checkbox" name="Extras" value="Balcony/Patio"> Balcony/Patio</label>
+          <label><input type="checkbox" name="Extras" value="Ironing"> Ironing</label>
+        </div>
+      </div>
+
+      <div><label for="message">Notes / Special Requests</label><textarea id="message" name="Notes" rows="4" placeholder="Parking info, pet at home, access code, etc."></textarea></div>
+
+      <div class="small">By submitting, your email app will open a message to <a href="mailto:info@shaddyreinigungservice.com">info@shaddyreinigungservice.com</a> with your details pre‑filled. We reply within 24h.</div>
+
+      <div class="estimate-container">
+        <h3>Estimated Price:</h3>
+        <p id="price-estimate">€0.00</p>
+        <small>This is an estimate. The final price may vary.</small>
+      </div>
+
+      <button type="submit">Submit Booking Request</button>
+    </form>
+  </section>
+
+  <!-- ===== CONTACT / FOOTER ===== -->
+  <section id="contact" class="section">
+    <div class="wrap">
+      <h2 style="font-family:var(--font-fancy);margin:0 0 12px">Contact</h2>
+      <p style="margin-top:0;color:#cfefff">
+        Email: <a href="mailto:info@shaddyreinigungservice.com">info@shaddyreinigungservice.com</a> · Phone: <a href="tel:+4915213731223">+49 1521 373 1223</a>
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    © <span id="year"></span> Shaddy Reinigung Services · <a href="mailto:info@shaddyreinigungservice.com">info@shaddyreinigungservice.com</a>
+  </footer>
+
+  <!-- Site JS -->
+  <script src="script.js"></script>
+</body>
+</html>
