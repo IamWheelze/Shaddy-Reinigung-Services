@@ -150,3 +150,87 @@ bookingForm.addEventListener('submit', async function(e) {
 
 // Year
 document.getElementById('year').textContent=new Date().getFullYear();
+
+
+// Language Switching
+const translations = {
+  de: {
+    nav_home: 'Home',
+    nav_services: 'Leistungen',
+    nav_testimonials: 'Bewertungen',
+    nav_faq: 'FAQ',
+    nav_gallery: 'Galerie',
+    nav_booking: 'Buchen',
+    nav_contact: 'Kontakt',
+    book_btn: 'Jetzt Buchen'
+  },
+  en: {
+    nav_home: 'Home',
+    nav_services: 'Services',
+    nav_testimonials: 'Testimonials',
+    nav_faq: 'FAQ',
+    nav_gallery: 'Gallery',
+    nav_booking: 'Book',
+    nav_contact: 'Contact',
+    book_btn: 'Book Now'
+  }
+};
+
+let currentLang = 'de';
+
+function switchLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem('preferredLanguage', lang);
+
+  // Update language buttons
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+
+  // Update all translatable elements
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (translations[lang][key]) {
+      el.textContent = translations[lang][key];
+    }
+  });
+
+  // Update HTML lang attribute
+  document.documentElement.lang = lang;
+}
+
+// Initialize language from localStorage or default to German
+const savedLang = localStorage.getItem('preferredLanguage') || 'de';
+switchLanguage(savedLang);
+
+// FAQ Toggle
+document.querySelectorAll('.faq-question').forEach(question => {
+  question.addEventListener('click', () => {
+    const faqItem = question.parentElement;
+    const wasActive = faqItem.classList.contains('active');
+
+    // Close all FAQs
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.classList.remove('active');
+    });
+
+    // Open clicked FAQ if it wasn't active
+    if (!wasActive) {
+      faqItem.classList.add('active');
+    }
+  });
+});
+
+// Show/Hide recurring days based on frequency selection
+const frequencySelect = document.getElementById('frequency');
+const recurringDays = document.getElementById('recurring-days');
+
+if (frequencySelect && recurringDays) {
+  frequencySelect.addEventListener('change', function() {
+    if (this.value === 'One‑time') {
+      recurringDays.style.display = 'none';
+    } else {
+      recurringDays.style.display = 'block';
+    }
+  });
+}
