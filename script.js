@@ -1,7 +1,19 @@
 // Navbar toggle
 const hamburger=document.getElementById('hamburger');
 const navLinks=document.getElementById('navLinks');
-hamburger.addEventListener('click',()=>navLinks.classList.toggle('open'));
+hamburger.addEventListener('click',()=>{
+  navLinks.classList.toggle('open');
+  const isOpen = navLinks.classList.contains('open');
+  hamburger.setAttribute('aria-expanded', isOpen);
+});
+
+// Close mobile menu when clicking nav links
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+  });
+});
 
 // Slides
 const slides=[
@@ -10,8 +22,9 @@ const slides=[
   {image:"https://images.pexels.com/photos/4097996/pexels-photo-4097996.jpeg",title:"Windows & Deep Cleaning Experts.",sub:"Streak-free glass and thorough deep cleans — top to bottom."}
 ];
 let i=0,timer;const hero=document.querySelector('.hero-slideshow'),bgs=hero.querySelectorAll('.slide-bg'),titleEl=hero.querySelector('.slide-title'),subEl=hero.querySelector('.slide-sub'),dots=document.querySelector('.hero-dots');
-slides.forEach((_,n)=>{const d=document.createElement('button');d.addEventListener('click',()=>go(n,true));dots.appendChild(d)});
+slides.forEach((_,n)=>{const d=document.createElement('button');d.setAttribute('aria-label', `Go to slide ${n+1}`);d.addEventListener('click',()=>go(n));dots.appendChild(d)});
 function show(n){i=(n+slides.length)%slides.length;bgs.forEach((b,j)=>{b.style.backgroundImage=`url("${slides[j].image}")`;b.classList.toggle('is-active',j===i)});titleEl.textContent=slides[i].title;subEl.textContent=slides[i].sub;[...dots.children].forEach((d,j)=>d.setAttribute('aria-selected',j===i))}
+function go(n){show(n);start()}
 function next(){show(i+1)}function prev(){show(i-1)}function start(){stop();timer=setInterval(next,5000)}function stop(){clearInterval(timer)}
 show(0);start();
 document.querySelector('.hero-next').onclick=()=>{next();start()};document.querySelector('.hero-prev').onclick=()=>{prev();start()};
