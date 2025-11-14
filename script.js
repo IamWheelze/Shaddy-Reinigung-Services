@@ -155,6 +155,7 @@ document.getElementById('year').textContent=new Date().getFullYear();
 // Language Switching
 const translations = {
   de: {
+    // Navigation
     nav_home: 'Home',
     nav_services: 'Leistungen',
     nav_testimonials: 'Bewertungen',
@@ -162,9 +163,71 @@ const translations = {
     nav_gallery: 'Galerie',
     nav_booking: 'Buchen',
     nav_contact: 'Kontakt',
-    book_btn: 'Jetzt Buchen'
+    book_btn: 'Jetzt Buchen',
+
+    // Hero
+    hero_title1: 'Strahlende Häuser. Glückliche Kunden.',
+    hero_sub1: 'Premium Haus- und Wohnungsreinigung mit vertrauenswürdigen Profis.',
+    hero_title2: 'Büroreinigung, auf die Sie zählen können.',
+    hero_sub2: 'Ruhig, effizient, nach Feierabend - für makellose Arbeitsbereiche.',
+    hero_title3: 'Experten für Fenster & Tiefenreinigung.',
+    hero_sub3: 'Streifenfreies Glas und gründliche Tiefenreinigung - von oben bis unten.',
+
+    // Services
+    services_title: 'Unsere Reinigungsleistungen',
+    services_subtitle: 'Wählen Sie einen Service um Details zu sehen und das Buchungsformular vorzufüllen.',
+
+    // Business Info
+    info_title: 'Über Unseren Service',
+    info_subtitle: 'Professionelle Reinigung in Karlsruhe und Umgebung',
+    info_hours_title: 'Öffnungszeiten',
+    info_hours_text: 'Montag - Freitag: 8:00 - 18:00<br>Samstag: 9:00 - 16:00<br>Sonntag: Geschlossen<br><em style="font-size:.9rem;color:#a9d9ff">Notfallservice verfügbar</em>',
+    info_area_title: 'Einzugsgebiet',
+    info_area_text: 'Karlsruhe & Umgebung<br>Bis zu 20km Radius<br>Pforzheim, Rastatt, Bruchsal<br><em style="font-size:.9rem;color:#a9d9ff">Größere Entfernungen auf Anfrage</em>',
+    info_payment_title: 'Zahlungsmethoden',
+    info_payment_text: 'Barzahlung<br>Banküberweisung<br>PayPal<br><em style="font-size:.9rem;color:#a9d9ff">Rechnung für Firmen</em>',
+
+    // Testimonials
+    testimonials_title: 'Was Unsere Kunden Sagen',
+    testimonials_subtitle: 'Über 200 zufriedene Kunden in Karlsruhe',
+
+    // FAQ
+    faq_title: 'Häufig Gestellte Fragen',
+    faq_subtitle: 'Alles was Sie über unseren Service wissen müssen',
+
+    // Gallery
+    gallery_title: 'Vorher & Nachher',
+    gallery_subtitle: 'Sehen Sie die Ergebnisse unserer Arbeit',
+
+    // Booking
+    booking_title: 'Buchen Sie Jetzt Ihre Reinigung',
+    booking_lead: 'Senden Sie Ihre Anfrage und wir antworten von <strong>info@shaddyreinigungservice.com</strong> innerhalb von 24 Stunden.',
+    form_name: 'Vollständiger Name',
+    form_email: 'E-Mail',
+    form_phone: 'Telefon',
+    form_address: 'Adresse',
+    form_postcode: 'PLZ / Stadt',
+    form_service: 'Service',
+    form_frequency: 'Häufigkeit',
+    form_date: 'Startdatum',
+    form_time: 'Bevorzugte Uhrzeit',
+    form_size: 'Objektgröße',
+    form_days: 'Wochentage (für wiederkehrende Reinigung)',
+    form_extras: 'Extras',
+    form_notes: 'Notizen / Besondere Wünsche',
+    form_submit: 'Buchungsanfrage Senden',
+    form_disclaimer: 'Mit dem Absenden wird Ihre Buchungsanfrage direkt an uns gesendet. Wir kontaktieren Sie von <a href="mailto:info@shaddyreinigungservice.com">info@shaddyreinigungservice.com</a> innerhalb von 24 Stunden um Ihren Termin zu bestätigen.',
+    price_estimate: 'Geschätzter Preis:',
+    price_disclaimer: 'Dies ist eine Schätzung. Der endgültige Preis kann variieren.',
+
+    // Contact
+    contact_title: 'Kontakt',
+    contact_email: 'E-Mail:',
+    contact_phone: 'Telefon:',
+    whatsapp_btn: 'Auf WhatsApp chatten'
   },
   en: {
+    // Navigation
     nav_home: 'Home',
     nav_services: 'Services',
     nav_testimonials: 'Testimonials',
@@ -172,7 +235,68 @@ const translations = {
     nav_gallery: 'Gallery',
     nav_booking: 'Book',
     nav_contact: 'Contact',
-    book_btn: 'Book Now'
+    book_btn: 'Book Now',
+
+    // Hero
+    hero_title1: 'Sparkling Homes. Happy Clients.',
+    hero_sub1: 'Premium house & apartment cleaning with trusted professionals.',
+    hero_title2: 'Office Cleaning You Can Count On.',
+    hero_sub2: 'Quiet, efficient, after-hours service to keep workspaces pristine.',
+    hero_title3: 'Windows & Deep Cleaning Experts.',
+    hero_sub3: 'Streak-free glass and thorough deep cleans — top to bottom.',
+
+    // Services
+    services_title: 'Our Cleaning Services',
+    services_subtitle: 'Choose a service to see details and pre-fill the booking form.',
+
+    // Business Info
+    info_title: 'About Our Service',
+    info_subtitle: 'Professional Cleaning in Karlsruhe and Surroundings',
+    info_hours_title: 'Business Hours',
+    info_hours_text: 'Monday - Friday: 8:00 AM - 6:00 PM<br>Saturday: 9:00 AM - 4:00 PM<br>Sunday: Closed<br><em style="font-size:.9rem;color:#a9d9ff">Emergency service available</em>',
+    info_area_title: 'Service Area',
+    info_area_text: 'Karlsruhe & Surroundings<br>Up to 20km radius<br>Pforzheim, Rastatt, Bruchsal<br><em style="font-size:.9rem;color:#a9d9ff">Larger distances on request</em>',
+    info_payment_title: 'Payment Methods',
+    info_payment_text: 'Cash<br>Bank Transfer<br>PayPal<br><em style="font-size:.9rem;color:#a9d9ff">Invoicing for companies</em>',
+
+    // Testimonials
+    testimonials_title: 'What Our Customers Say',
+    testimonials_subtitle: 'Over 200 satisfied customers in Karlsruhe',
+
+    // FAQ
+    faq_title: 'Frequently Asked Questions',
+    faq_subtitle: 'Everything you need to know about our service',
+
+    // Gallery
+    gallery_title: 'Before & After',
+    gallery_subtitle: 'See the results of our work',
+
+    // Booking
+    booking_title: 'Book Your Cleaning Now',
+    booking_lead: 'Submit your request and we\'ll reply from <strong>info@shaddyreinigungservice.com</strong> within 24 hours.',
+    form_name: 'Full Name',
+    form_email: 'Email',
+    form_phone: 'Phone',
+    form_address: 'Address',
+    form_postcode: 'Postcode / City',
+    form_service: 'Service',
+    form_frequency: 'Frequency',
+    form_date: 'Start Date',
+    form_time: 'Preferred Time',
+    form_size: 'Property Size',
+    form_days: 'Weekdays (for recurring cleaning)',
+    form_extras: 'Extras',
+    form_notes: 'Notes / Special Requests',
+    form_submit: 'Submit Booking Request',
+    form_disclaimer: 'By submitting, your booking request will be sent to us directly. We\'ll contact you from <a href="mailto:info@shaddyreinigungservice.com">info@shaddyreinigungservice.com</a> within 24 hours to confirm your appointment.',
+    price_estimate: 'Estimated Price:',
+    price_disclaimer: 'This is an estimate. The final price may vary.',
+
+    // Contact
+    contact_title: 'Contact Us',
+    contact_email: 'Email:',
+    contact_phone: 'Phone:',
+    whatsapp_btn: 'Chat on WhatsApp'
   }
 };
 
@@ -191,12 +315,36 @@ function switchLanguage(lang) {
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.dataset.i18n;
     if (translations[lang][key]) {
-      el.textContent = translations[lang][key];
+      // Check if element should use innerHTML (contains HTML tags)
+      if (translations[lang][key].includes('<')) {
+        el.innerHTML = translations[lang][key];
+      } else {
+        el.textContent = translations[lang][key];
+      }
     }
   });
 
+  // Update hero slideshow with new language
+  updateHeroSlides(lang);
+
   // Update HTML lang attribute
   document.documentElement.lang = lang;
+}
+
+// Update hero slideshow texts
+function updateHeroSlides(lang) {
+  const newSlides = [
+    {image: slides[0].image, title: translations[lang].hero_title1, sub: translations[lang].hero_sub1},
+    {image: slides[1].image, title: translations[lang].hero_title2, sub: translations[lang].hero_sub2},
+    {image: slides[2].image, title: translations[lang].hero_title3, sub: translations[lang].hero_sub3}
+  ];
+
+  // Update the global slides array
+  slides.splice(0, slides.length, ...newSlides);
+
+  // Update current slide display
+  titleEl.textContent = slides[i].title;
+  subEl.textContent = slides[i].sub;
 }
 
 // Initialize language from localStorage or default to German
