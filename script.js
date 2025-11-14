@@ -95,5 +95,45 @@ sizeSelect.addEventListener('change', calculateAndDisplayEstimate);
 extrasCheckboxes.forEach(checkbox => checkbox.addEventListener('change', calculateAndDisplayEstimate));
 
 
+// Form submission handler
+const bookingForm = document.getElementById('bookingForm');
+bookingForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const submitBtn = bookingForm.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.textContent;
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+
+    try {
+        const formData = new FormData(bookingForm);
+        const response = await fetch(bookingForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        if (response.ok) {
+            // Show success message
+            bookingForm.innerHTML = `
+                <div style="text-align:center; padding:40px 20px; background:rgba(0,191,255,0.1); border:2px solid rgba(0,191,255,0.3); border-radius:16px;">
+                    <div style="font-size:4rem; margin-bottom:16px;">✓</div>
+                    <h3 style="color:#00bfff; margin:0 0 12px; font-family:var(--font-fancy);">Booking Request Received!</h3>
+                    <p style="color:#cfefff; margin:0 0 24px;">Thank you for your booking request. We'll contact you at <strong>info@shaddyreinigungservice.com</strong> within 24 hours to confirm your appointment.</p>
+                    <a href="#home" style="display:inline-block; background:var(--accent); color:#fff; text-decoration:none; padding:12px 28px; border-radius:12px; font-weight:600;">Back to Home</a>
+                </div>
+            `;
+        } else {
+            throw new Error('Form submission failed');
+        }
+    } catch (error) {
+        alert('There was a problem submitting your form. Please email us directly at info@shaddyreinigungservice.com');
+        submitBtn.textContent = originalBtnText;
+        submitBtn.disabled = false;
+    }
+});
+
 // Year
 document.getElementById('year').textContent=new Date().getFullYear();
