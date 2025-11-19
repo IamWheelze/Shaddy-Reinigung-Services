@@ -552,3 +552,33 @@ if (frequencySelect && recurringDays) {
     }
   });
 }
+
+// Theme Toggle
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = document.getElementById('themeIcon');
+
+// Check for saved theme preference or default to 'light'
+const savedTheme = localStorage.getItem('theme') || 'light';
+
+// Apply saved theme on page load
+function applyTheme(theme) {
+  if (theme === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    themeIcon.textContent = '🌙';
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+    themeIcon.textContent = '☀️';
+  }
+}
+
+// Initialize theme
+applyTheme(savedTheme);
+
+// Toggle theme when button is clicked
+themeToggle.addEventListener('click', () => {
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+  applyTheme(newTheme);
+  localStorage.setItem('theme', newTheme);
+});
