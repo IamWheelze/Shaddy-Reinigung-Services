@@ -557,17 +557,17 @@ if (frequencySelect && recurringDays) {
 const themeToggle = document.getElementById('themeToggle');
 const themeIcon = document.getElementById('themeIcon');
 
-// Check for saved theme preference or default to 'light'
-const savedTheme = localStorage.getItem('theme') || 'light';
+// Check for saved theme preference or default to 'dark' (original beautiful theme)
+const savedTheme = localStorage.getItem('theme') || 'dark';
 
 // Apply saved theme on page load
 function applyTheme(theme) {
-  if (theme === 'dark') {
-    document.documentElement.setAttribute('data-theme', 'dark');
-    themeIcon.textContent = '🌙';
+  if (theme === 'light') {
+    document.documentElement.setAttribute('data-theme', 'light');
+    themeIcon.textContent = '☀️';
   } else {
     document.documentElement.removeAttribute('data-theme');
-    themeIcon.textContent = '☀️';
+    themeIcon.textContent = '🌙';
   }
 }
 
@@ -577,7 +577,7 @@ applyTheme(savedTheme);
 // Toggle theme when button is clicked
 themeToggle.addEventListener('click', () => {
   const currentTheme = document.documentElement.getAttribute('data-theme');
-  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
 
   applyTheme(newTheme);
   localStorage.setItem('theme', newTheme);
