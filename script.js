@@ -30,10 +30,19 @@ show(0);start();
 document.querySelector('.hero-next').onclick=()=>{next();start()};document.querySelector('.hero-prev').onclick=()=>{prev();start()};
 hero.onmouseenter=stop;hero.onmouseleave=start;
 
-// Scroll reveal for service cards
+// Scroll reveal for service cards with staggered animation
 (function(){
   const io=new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); } });
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        // Add a small stagger delay based on element index
+        const delay = Array.from(e.target.parentElement.children).indexOf(e.target) * 80;
+        setTimeout(() => {
+          e.target.classList.add('in-view');
+        }, delay);
+        io.unobserve(e.target);
+      }
+    });
   },{threshold:0.15});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 })();
@@ -582,3 +591,37 @@ themeToggle.addEventListener('click', () => {
   applyTheme(newTheme);
   localStorage.setItem('theme', newTheme);
 });
+
+// Parallax Scrolling Effect
+let ticking = false;
+const parallaxElements = document.querySelectorAll('.hero-slideshow .slide-bg');
+
+function updateParallax() {
+  const scrolled = window.pageYOffset;
+  const heroHeight = hero.offsetHeight;
+
+  // Only apply parallax when hero is visible
+  if (scrolled < heroHeight) {
+    parallaxElements.forEach(bg => {
+      const yPos = -(scrolled * 0.5); // Subtle parallax speed
+      bg.style.transform = `translateY(${yPos}px)`;
+    });
+  }
+
+  ticking = false;
+}
+
+function requestTick() {
+  if (!ticking) {
+    window.requestAnimationFrame(updateParallax);
+    ticking = true;
+  }
+}
+
+// Listen for scroll events
+window.addEventListener('scroll', requestTick);
+
+// Disable parallax on devices that prefer reduced motion
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  window.removeEventListener('scroll', requestTick);
+}
