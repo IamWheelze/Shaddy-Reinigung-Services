@@ -625,3 +625,53 @@ window.addEventListener('scroll', requestTick);
 if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   window.removeEventListener('scroll', requestTick);
 }
+
+// ===== FOAM BUBBLE EFFECT ON SUBMIT BUTTON =====
+/**
+ * Creates an effervescent foam effect when the submit button is clicked.
+ * Bubbles spawn from the click point, grow outward, and fade away.
+ */
+function createFoamEffect(event) {
+  const button = event.currentTarget;
+  const rect = button.getBoundingClientRect();
+
+  // Get click position relative to button
+  const x = event.clientX - rect.left;
+  const y = event.clientY - rect.top;
+
+  // Create multiple bubbles for a foam effect (8-12 bubbles)
+  const bubbleCount = Math.floor(Math.random() * 5) + 8;
+
+  for (let i = 0; i < bubbleCount; i++) {
+    // Create bubble element
+    const bubble = document.createElement('span');
+    bubble.classList.add('foam-bubble');
+
+    // Random size between 10px and 30px
+    const size = Math.random() * 20 + 10;
+    bubble.style.width = `${size}px`;
+    bubble.style.height = `${size}px`;
+
+    // Position at click point with slight random offset
+    const offsetX = (Math.random() - 0.5) * 40;
+    const offsetY = (Math.random() - 0.5) * 40;
+    bubble.style.left = `${x + offsetX}px`;
+    bubble.style.top = `${y + offsetY}px`;
+
+    // Random animation delay for staggered effect
+    bubble.style.animationDelay = `${Math.random() * 0.1}s`;
+
+    // Add to button
+    button.appendChild(bubble);
+
+    // Remove bubble after animation completes
+    setTimeout(() => {
+      bubble.remove();
+    }, 900);
+  }
+}
+
+// Attach foam effect to submit button(s)
+document.querySelectorAll('button[type="submit"]').forEach(button => {
+  button.addEventListener('click', createFoamEffect);
+});
