@@ -69,13 +69,13 @@ const pricing = {
         'Pressure Washing': 30,
     },
     timeEstimates: {
-        'Studio / 1 Zimmer': 2,
-        '2 Zimmer': 3,
-        '3 Zimmer': 4,
-        '4+ Zimmer': 5,
-        'Office: < 100 m²': 3,
-        'Office: 100–300 m²': 5,
-        'Office: 300+ m²': 8,
+        studio: 2,
+        'two-rooms': 3,
+        'three-rooms': 4,
+        'four-plus': 5,
+        'office-small': 3,
+        'office-medium': 5,
+        'office-large': 8,
     },
     extras: {
         'Inside Oven': 1,
@@ -296,6 +296,45 @@ const translations = {
     form_notes: 'Notizen / Besondere Wünsche',
     form_submit: 'Buchungsanfrage Senden',
     form_sending: 'Wird gesendet...',
+    placeholder_name: 'Ihr Name',
+    placeholder_email: 'max@example.com',
+    placeholder_phone: '+49 ...',
+    placeholder_address: 'Straße, Nr.',
+    placeholder_postcode: '76133 Karlsruhe',
+    placeholder_notes: 'Parkinformationen, Haustier, Zugangscode usw.',
+    option_select_service: 'Service auswählen',
+    option_house: 'Hausreinigung',
+    option_office: 'Büroreinigung',
+    option_deep: 'Grundreinigung',
+    option_move: 'Umzugsreinigung',
+    option_window: 'Fensterreinigung',
+    option_post: 'Baureinigung',
+    option_airbnb: 'Airbnb / Kurzzeitvermietung',
+    option_carpet: 'Teppich & Polster',
+    option_pressure: 'Hochdruckreinigung',
+    option_onetime: 'Einmalig',
+    option_weekly: 'Wöchentlich',
+    option_biweekly: 'Alle zwei Wochen',
+    option_monthly: 'Monatlich',
+    option_size_studio: 'Studio / 1 Zimmer',
+    option_size_two: '2 Zimmer',
+    option_size_three: '3 Zimmer',
+    option_size_four: '4+ Zimmer',
+    option_size_office_small: 'Büro: < 100 m²',
+    option_size_office_med: 'Büro: 100–300 m²',
+    option_size_office_large: 'Büro: 300+ m²',
+    extra_oven: 'Backofen innen',
+    extra_fridge: 'Kühlschrank innen',
+    extra_windows: 'Fenster',
+    extra_balcony: 'Balkon/Terrasse',
+    extra_ironing: 'Bügeln',
+    day_mon: 'Mo',
+    day_tue: 'Di',
+    day_wed: 'Mi',
+    day_thu: 'Do',
+    day_fri: 'Fr',
+    day_sat: 'Sa',
+    day_sun: 'So',
     form_success_title: 'Buchungsanfrage Erhalten!',
     form_success_text: 'Vielen Dank für Ihre Buchungsanfrage. Wir kontaktieren Sie unter <strong>info@shaddyreinigungservice.com</strong> innerhalb von 24 Stunden um Ihren Termin zu bestätigen.',
     form_success_btn: 'Zurück zur Startseite',
@@ -453,6 +492,45 @@ const translations = {
     form_notes: 'Notes / Special Requests',
     form_submit: 'Submit Booking Request',
     form_sending: 'Sending...',
+    placeholder_name: 'Your Name',
+    placeholder_email: 'you@example.com',
+    placeholder_phone: '+49 ...',
+    placeholder_address: 'Street, No.',
+    placeholder_postcode: '76133 Karlsruhe',
+    placeholder_notes: 'Parking info, pet at home, access code, etc.',
+    option_select_service: 'Select Service',
+    option_house: 'House Cleaning',
+    option_office: 'Office Cleaning',
+    option_deep: 'Deep Cleaning',
+    option_move: 'Move-In / Move-Out',
+    option_window: 'Window Cleaning',
+    option_post: 'Post-Construction',
+    option_airbnb: 'Airbnb / Short‑Stay',
+    option_carpet: 'Carpet & Upholstery',
+    option_pressure: 'Pressure Washing',
+    option_onetime: 'One‑time',
+    option_weekly: 'Weekly',
+    option_biweekly: 'Bi‑weekly',
+    option_monthly: 'Monthly',
+    option_size_studio: 'Studio / 1 Room',
+    option_size_two: '2 Rooms',
+    option_size_three: '3 Rooms',
+    option_size_four: '4+ Rooms',
+    option_size_office_small: 'Office: < 100 m²',
+    option_size_office_med: 'Office: 100–300 m²',
+    option_size_office_large: 'Office: 300+ m²',
+    extra_oven: 'Inside Oven',
+    extra_fridge: 'Inside Fridge',
+    extra_windows: 'Windows',
+    extra_balcony: 'Balcony/Patio',
+    extra_ironing: 'Ironing',
+    day_mon: 'Mon',
+    day_tue: 'Tue',
+    day_wed: 'Wed',
+    day_thu: 'Thu',
+    day_fri: 'Fri',
+    day_sat: 'Sat',
+    day_sun: 'Sun',
     form_success_title: 'Booking Request Received!',
     form_success_text: 'Thank you for your booking request. We\'ll contact you at <strong>info@shaddyreinigungservice.com</strong> within 24 hours to confirm your appointment.',
     form_success_btn: 'Back to Home',
@@ -484,12 +562,19 @@ function switchLanguage(lang) {
   // Update all translatable elements
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.dataset.i18n;
-    if (translations[lang][key]) {
-      // Check if element should use innerHTML (contains HTML tags)
-      if (translations[lang][key].includes('<')) {
-        el.innerHTML = translations[lang][key];
+    const translation = translations[lang][key];
+    if (translation) {
+      const target = el.dataset.i18nTarget;
+      const hasHTML = /<[^>]+>/.test(translation);
+
+      if (target === 'placeholder') {
+        el.setAttribute('placeholder', translation);
+      } else if (target === 'value') {
+        el.value = translation;
+      } else if (hasHTML) {
+        el.innerHTML = translation;
       } else {
-        el.textContent = translations[lang][key];
+        el.textContent = translation;
       }
     }
   });

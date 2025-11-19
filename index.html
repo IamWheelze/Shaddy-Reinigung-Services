@@ -77,7 +77,7 @@
     <div class="slide-copy">
       <h1 class="slide-title"></h1>
       <p class="slide-sub"></p>
-      <a href="#booking" class="slide-cta">Book Now</a>
+      <a href="#booking" class="slide-cta" data-i18n="book_btn">Book Now</a>
     </div>
     <div class="hero-controls">
       <button class="hero-prev" aria-label="Previous">‹</button>
@@ -374,30 +374,30 @@
 
     <form id="bookingForm" action="https://formspree.io/f/mldoodyl" method="POST">
       <div class="form-grid">
-        <div><label for="name" data-i18n="form_name">Vollständiger Name</label><input id="name" name="Name" required placeholder="Your Name" /></div>
-        <div><label for="email" data-i18n="form_email">E-Mail</label><input id="email" name="Email" type="email" required placeholder="you@example.com" /></div>
-        <div><label for="phone" data-i18n="form_phone">Telefon</label><input id="phone" name="Phone" type="tel" placeholder="+49 ..." /></div>
-        <div><label for="address" data-i18n="form_address">Adresse</label><input id="address" name="Address" placeholder="Street, No." /></div>
-        <div><label for="postcode" data-i18n="form_postcode">PLZ / Stadt</label><input id="postcode" name="Postcode / City" placeholder="76133 Karlsruhe" /></div>
+        <div><label for="name" data-i18n="form_name">Vollständiger Name</label><input id="name" name="Name" required placeholder="Your Name" data-i18n="placeholder_name" data-i18n-target="placeholder" /></div>
+        <div><label for="email" data-i18n="form_email">E-Mail</label><input id="email" name="Email" type="email" required placeholder="you@example.com" data-i18n="placeholder_email" data-i18n-target="placeholder" /></div>
+        <div><label for="phone" data-i18n="form_phone">Telefon</label><input id="phone" name="Phone" type="tel" placeholder="+49 ..." data-i18n="placeholder_phone" data-i18n-target="placeholder" /></div>
+        <div><label for="address" data-i18n="form_address">Adresse</label><input id="address" name="Address" placeholder="Street, No." data-i18n="placeholder_address" data-i18n-target="placeholder" /></div>
+        <div><label for="postcode" data-i18n="form_postcode">PLZ / Stadt</label><input id="postcode" name="Postcode / City" placeholder="76133 Karlsruhe" data-i18n="placeholder_postcode" data-i18n-target="placeholder" /></div>
         <div>
           <label for="service" data-i18n="form_service">Service</label>
           <select id="service" name="Service" required>
-            <option value="">Select Service</option>
-            <option>House Cleaning</option>
-            <option>Office Cleaning</option>
-            <option>Deep Cleaning</option>
-            <option>Move-In / Move-Out</option>
-            <option>Window Cleaning</option>
-            <option>Post-Construction</option>
-            <option>Airbnb / Short‑Stay</option>
-            <option>Carpet & Upholstery</option>
-            <option>Pressure Washing</option>
+            <option value="" data-i18n="option_select_service">Select Service</option>
+            <option value="House Cleaning" data-i18n="option_house">House Cleaning</option>
+            <option value="Office Cleaning" data-i18n="option_office">Office Cleaning</option>
+            <option value="Deep Cleaning" data-i18n="option_deep">Deep Cleaning</option>
+            <option value="Move-In / Move-Out" data-i18n="option_move">Move-In / Move-Out</option>
+            <option value="Window Cleaning" data-i18n="option_window">Window Cleaning</option>
+            <option value="Post-Construction" data-i18n="option_post">Post-Construction</option>
+            <option value="Airbnb / Short‑Stay" data-i18n="option_airbnb">Airbnb / Short‑Stay</option>
+            <option value="Carpet & Upholstery" data-i18n="option_carpet">Carpet & Upholstery</option>
+            <option value="Pressure Washing" data-i18n="option_pressure">Pressure Washing</option>
           </select>
         </div>
-        <div><label for="frequency" data-i18n="form_frequency">Häufigkeit</label><select id="frequency" name="Frequency"><option>One‑time</option><option>Weekly</option><option>Bi‑weekly</option><option>Monthly</option></select></div>
+        <div><label for="frequency" data-i18n="form_frequency">Häufigkeit</label><select id="frequency" name="Frequency"><option value="One‑time" data-i18n="option_onetime">One‑time</option><option value="Weekly" data-i18n="option_weekly">Weekly</option><option value="Bi‑weekly" data-i18n="option_biweekly">Bi‑weekly</option><option value="Monthly" data-i18n="option_monthly">Monthly</option></select></div>
         <div><label for="date" data-i18n="form_date">Startdatum</label><input id="date" name="Start Date" type="date" required /></div>
         <div><label for="time" data-i18n="form_time">Bevorzugte Uhrzeit</label><input id="time" name="Preferred Time" type="time" /></div>
-        <div><label for="size" data-i18n="form_size">Objektgröße</label><select id="size" name="Property Size"><option>Studio / 1 Zimmer</option><option>2 Zimmer</option><option>3 Zimmer</option><option>4+ Zimmer</option><option>Office: &lt; 100 m²</option><option>Office: 100–300 m²</option><option>Office: 300+ m²</option></select></div>
+        <div><label for="size" data-i18n="form_size">Objektgröße</label><select id="size" name="Property Size"><option value="studio" data-i18n="option_size_studio">Studio / 1 Zimmer</option><option value="two-rooms" data-i18n="option_size_two">2 Zimmer</option><option value="three-rooms" data-i18n="option_size_three">3 Zimmer</option><option value="four-plus" data-i18n="option_size_four">4+ Zimmer</option><option value="office-small" data-i18n="option_size_office_small">Office: &lt; 100 m²</option><option value="office-medium" data-i18n="option_size_office_med">Office: 100–300 m²</option><option value="office-large" data-i18n="option_size_office_large">Office: 300+ m²</option></select></div>
       </div>
 
       <div id="recurring-days" style="display:none">
@@ -405,31 +405,31 @@
         <div class="day-selector">
           <div class="day-checkbox">
             <input type="checkbox" id="monday" name="Days" value="Monday">
-            <label for="monday">Mo</label>
+            <label for="monday" data-i18n="day_mon">Mo</label>
           </div>
           <div class="day-checkbox">
             <input type="checkbox" id="tuesday" name="Days" value="Tuesday">
-            <label for="tuesday">Di</label>
+            <label for="tuesday" data-i18n="day_tue">Di</label>
           </div>
           <div class="day-checkbox">
             <input type="checkbox" id="wednesday" name="Days" value="Wednesday">
-            <label for="wednesday">Mi</label>
+            <label for="wednesday" data-i18n="day_wed">Mi</label>
           </div>
           <div class="day-checkbox">
             <input type="checkbox" id="thursday" name="Days" value="Thursday">
-            <label for="thursday">Do</label>
+            <label for="thursday" data-i18n="day_thu">Do</label>
           </div>
           <div class="day-checkbox">
             <input type="checkbox" id="friday" name="Days" value="Friday">
-            <label for="friday">Fr</label>
+            <label for="friday" data-i18n="day_fri">Fr</label>
           </div>
           <div class="day-checkbox">
             <input type="checkbox" id="saturday" name="Days" value="Saturday">
-            <label for="saturday">Sa</label>
+            <label for="saturday" data-i18n="day_sat">Sa</label>
           </div>
           <div class="day-checkbox">
             <input type="checkbox" id="sunday" name="Days" value="Sunday">
-            <label for="sunday">So</label>
+            <label for="sunday" data-i18n="day_sun">So</label>
           </div>
         </div>
       </div>
@@ -437,15 +437,15 @@
       <div>
         <label data-i18n="form_extras">Extras</label>
         <div class="checkbox-row">
-          <label><input type="checkbox" name="Extras" value="Inside Oven"> Inside Oven</label>
-          <label><input type="checkbox" name="Extras" value="Inside Fridge"> Inside Fridge</label>
-          <label><input type="checkbox" name="Extras" value="Windows"> Windows</label>
-          <label><input type="checkbox" name="Extras" value="Balcony/Patio"> Balcony/Patio</label>
-          <label><input type="checkbox" name="Extras" value="Ironing"> Ironing</label>
+          <label><input type="checkbox" name="Extras" value="Inside Oven"> <span data-i18n="extra_oven">Inside Oven</span></label>
+          <label><input type="checkbox" name="Extras" value="Inside Fridge"> <span data-i18n="extra_fridge">Inside Fridge</span></label>
+          <label><input type="checkbox" name="Extras" value="Windows"> <span data-i18n="extra_windows">Windows</span></label>
+          <label><input type="checkbox" name="Extras" value="Balcony/Patio"> <span data-i18n="extra_balcony">Balcony/Patio</span></label>
+          <label><input type="checkbox" name="Extras" value="Ironing"> <span data-i18n="extra_ironing">Ironing</span></label>
         </div>
       </div>
 
-      <div><label for="message" data-i18n="form_notes">Notizen / Besondere Wünsche</label><textarea id="message" name="Notes" rows="4" placeholder="Parking info, pet at home, access code, etc."></textarea></div>
+      <div><label for="message" data-i18n="form_notes">Notizen / Besondere Wünsche</label><textarea id="message" name="Notes" rows="4" placeholder="Parking info, pet at home, access code, etc." data-i18n="placeholder_notes" data-i18n-target="placeholder"></textarea></div>
 
       <div style="margin:24px 0">
         <label style="display:flex;align-items:start;gap:12px;font-weight:400;cursor:pointer">
