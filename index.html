@@ -90,7 +90,7 @@
   <section id="services" class="section">
     <div class="wrap">
       <h2 style="font-family:var(--font-fancy);margin:0 0 14px" data-i18n="services_title">Unsere Reinigungsleistungen</h2>
-      <p style="margin-top:0;color:#cfefff" data-i18n="services_subtitle">Wählen Sie einen Service um Details zu sehen und das Buchungsformular vorzufüllen.</p>
+      <p style="margin-top:0;color:var(--text-secondary)" data-i18n="services_subtitle">Wählen Sie einen Service um Details zu sehen und das Buchungsformular vorzufüllen.</p>
       <div class="grid">
 
         <article class="service-card reveal" tabindex="0">
@@ -182,7 +182,7 @@
   <section id="info" class="section">
     <div class="wrap">
       <h2 style="font-family:var(--font-fancy);margin:0 0 14px;text-align:center" data-i18n="info_title">Über Unseren Service</h2>
-      <p style="margin-top:0;color:#cfefff;text-align:center" data-i18n="info_subtitle">Professionelle Reinigung in Karlsruhe und Umgebung</p>
+      <p style="margin-top:0;color:var(--text-secondary);text-align:center" data-i18n="info_subtitle">Professionelle Reinigung in Karlsruhe und Umgebung</p>
       <div class="info-grid">
         <div class="info-card">
           <div class="info-icon">🕐</div>
@@ -191,7 +191,7 @@
             Montag - Freitag: 8:00 - 18:00<br>
             Samstag: 9:00 - 16:00<br>
             Sonntag: Geschlossen<br>
-            <em style="font-size:.9rem;color:#a9d9ff">Notfallservice verfügbar</em>
+            <em style="font-size:.9rem;color:var(--text-secondary);opacity:0.8">Notfallservice verfügbar</em>
           </div>
         </div>
         <div class="info-card">
@@ -201,7 +201,7 @@
             Karlsruhe & Umgebung<br>
             Bis zu 20km Radius<br>
             Pforzheim, Rastatt, Bruchsal<br>
-            <em style="font-size:.9rem;color:#a9d9ff">Größere Entfernungen auf Anfrage</em>
+            <em style="font-size:.9rem;color:var(--text-secondary);opacity:0.8">Größere Entfernungen auf Anfrage</em>
           </div>
         </div>
         <div class="info-card">
@@ -211,7 +211,7 @@
             Barzahlung<br>
             Banküberweisung<br>
             PayPal<br>
-            <em style="font-size:.9rem;color:#a9d9ff">Rechnung für Firmen</em>
+            <em style="font-size:.9rem;color:var(--text-secondary);opacity:0.8">Rechnung für Firmen</em>
           </div>
         </div>
       </div>
@@ -222,7 +222,7 @@
   <section id="testimonials" class="testimonials">
     <div class="wrap">
       <h2 style="font-family:var(--font-fancy);margin:0 0 14px;text-align:center" data-i18n="testimonials_title">Was Unsere Kunden Sagen</h2>
-      <p style="margin-top:0;color:#cfefff;text-align:center" data-i18n="testimonials_subtitle">Über 200 zufriedene Kunden in Karlsruhe</p>
+      <p style="margin-top:0;color:var(--text-secondary);text-align:center" data-i18n="testimonials_subtitle">Über 200 zufriedene Kunden in Karlsruhe</p>
       <div class="testimonial-grid">
         <div class="testimonial-card reveal">
           <div class="rating">★★★★★</div>
@@ -271,7 +271,7 @@
   <section id="faq" class="section">
     <div class="wrap">
       <h2 style="font-family:var(--font-fancy);margin:0 0 14px;text-align:center" data-i18n="faq_title">Häufig Gestellte Fragen</h2>
-      <p style="margin-top:0;color:#cfefff;text-align:center;margin-bottom:40px" data-i18n="faq_subtitle">Alles was Sie über unseren Service wissen müssen</p>
+      <p style="margin-top:0;color:var(--text-secondary);text-align:center;margin-bottom:40px" data-i18n="faq_subtitle">Alles was Sie über unseren Service wissen müssen</p>
       <div class="faq-container">
         <div class="faq-item">
           <div class="faq-question">
@@ -332,10 +332,10 @@
   </section>
 
   <!-- ===== GALLERY ===== -->
-  <section id="gallery" class="section" style="background:rgba(8,14,26,.6)">
+  <section id="gallery" class="section">
     <div class="wrap">
       <h2 style="font-family:var(--font-fancy);margin:0 0 14px;text-align:center" data-i18n="gallery_title">Vorher & Nachher</h2>
-      <p style="margin-top:0;color:#cfefff;text-align:center" data-i18n="gallery_subtitle">Sehen Sie die Ergebnisse unserer Arbeit</p>
+      <p style="margin-top:0;color:var(--text-secondary);text-align:center" data-i18n="gallery_subtitle">Sehen Sie die Ergebnisse unserer Arbeit</p>
       <div class="gallery-grid">
         <div class="gallery-item reveal">
           <img src="https://images.pexels.com/photos/4099264/pexels-photo-4099264.jpeg" alt="Kitchen cleaning before and after" loading="lazy">
@@ -366,8 +366,10 @@
   </section>
 
   <!-- ===== BOOKING ===== -->
-  <section id="booking" class="booking-container">
-    <h2 data-i18n="booking_title">Buchen Sie Jetzt Ihre Reinigung</h2>
+  <section id="booking" class="section">
+    <div class="wrap">
+      <div class="booking-container">
+        <h2 data-i18n="booking_title">Buchen Sie Jetzt Ihre Reinigung</h2>
     <p class="lead" data-i18n="booking_lead">Senden Sie Ihre Anfrage und wir antworten von <strong>info@shaddyreinigungservice.com</strong> innerhalb von 24 Stunden.</p>
 
     <form id="bookingForm" action="https://formspree.io/f/mldoodyl" method="POST">
@@ -465,6 +467,8 @@
 
       <button type="submit" data-i18n="form_submit">Buchungsanfrage Senden</button>
     </form>
+      </div>
+    </div>
   </section>
 
   <!-- ===== CONTACT / FOOTER ===== -->
