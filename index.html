@@ -400,6 +400,17 @@
 
       <div><label for="message" data-i18n="form_notes">Notizen / Besondere Wünsche</label><textarea id="message" name="Notes" rows="4" placeholder="Parking info, pet at home, access code, etc."></textarea></div>
 
+      <div>
+        <label data-i18n="form_photos">Fotos hochladen (optional)</label>
+        <div class="upload-area" id="uploadArea">
+          <div class="upload-icon">&#128247;</div>
+          <p class="upload-text" data-i18n="upload_text">Bilder hierher ziehen oder klicken zum Auswählen</p>
+          <p class="upload-hint" data-i18n="upload_hint">Max. 5 Bilder, je max. 10 MB (JPG, PNG, WEBP)</p>
+          <input type="file" id="fileInput" name="Photos" multiple accept="image/jpeg,image/png,image/webp" style="display:none">
+        </div>
+        <div class="upload-previews" id="uploadPreviews"></div>
+      </div>
+
       <div style="margin:24px 0">
         <label style="display:flex;align-items:start;gap:12px;font-weight:400;cursor:pointer">
           <input type="checkbox" id="privacy-consent" name="Privacy Consent" required style="width:auto;margin-top:4px;cursor:pointer">

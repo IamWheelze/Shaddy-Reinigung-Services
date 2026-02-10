@@ -148,6 +148,70 @@ bookingForm.addEventListener('submit', async function(e) {
     }
 });
 
+// Image Upload
+const uploadArea = document.getElementById('uploadArea');
+const fileInput = document.getElementById('fileInput');
+const uploadPreviews = document.getElementById('uploadPreviews');
+let uploadedFiles = [];
+const MAX_FILES = 5;
+const MAX_SIZE = 10 * 1024 * 1024; // 10MB
+const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
+
+uploadArea.addEventListener('click', () => fileInput.click());
+uploadArea.addEventListener('dragover', (e) => { e.preventDefault(); uploadArea.classList.add('drag-over'); });
+uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('drag-over'));
+uploadArea.addEventListener('drop', (e) => {
+  e.preventDefault();
+  uploadArea.classList.remove('drag-over');
+  handleFiles(e.dataTransfer.files);
+});
+fileInput.addEventListener('change', () => { handleFiles(fileInput.files); fileInput.value = ''; });
+
+function handleFiles(files) {
+  for (const file of files) {
+    if (uploadedFiles.length >= MAX_FILES) break;
+    if (!ALLOWED_TYPES.includes(file.type)) continue;
+    if (file.size > MAX_SIZE) continue;
+    uploadedFiles.push(file);
+    addPreview(file, uploadedFiles.length - 1);
+  }
+  updateFileInput();
+}
+
+function addPreview(file, index) {
+  const div = document.createElement('div');
+  div.className = 'upload-preview';
+  div.dataset.index = index;
+  const img = document.createElement('img');
+  img.src = URL.createObjectURL(file);
+  img.alt = file.name;
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'remove-btn';
+  btn.textContent = '\u00D7';
+  btn.addEventListener('click', () => removeFile(index));
+  div.appendChild(img);
+  div.appendChild(btn);
+  uploadPreviews.appendChild(div);
+}
+
+function removeFile(index) {
+  uploadedFiles.splice(index, 1);
+  renderPreviews();
+  updateFileInput();
+}
+
+function renderPreviews() {
+  uploadPreviews.innerHTML = '';
+  uploadedFiles.forEach((file, idx) => addPreview(file, idx));
+}
+
+function updateFileInput() {
+  const dt = new DataTransfer();
+  uploadedFiles.forEach(f => dt.items.add(f));
+  fileInput.files = dt.files;
+}
+
 // Year
 document.getElementById('year').textContent=new Date().getFullYear();
 
@@ -294,6 +358,9 @@ const translations = {
     form_days: 'Wochentage (für wiederkehrende Reinigung)',
     form_extras: 'Extras',
     form_notes: 'Notizen / Besondere Wünsche',
+    form_photos: 'Fotos hochladen (optional)',
+    upload_text: 'Bilder hierher ziehen oder klicken zum Auswählen',
+    upload_hint: 'Max. 5 Bilder, je max. 10 MB (JPG, PNG, WEBP)',
     form_submit: 'Buchungsanfrage Senden',
     form_sending: 'Wird gesendet...',
     form_success_title: 'Buchungsanfrage Erhalten!',
@@ -451,6 +518,9 @@ const translations = {
     form_days: 'Weekdays (for recurring cleaning)',
     form_extras: 'Extras',
     form_notes: 'Notes / Special Requests',
+    form_photos: 'Upload Photos (optional)',
+    upload_text: 'Drag images here or click to browse',
+    upload_hint: 'Max. 5 images, max. 10 MB each (JPG, PNG, WEBP)',
     form_submit: 'Submit Booking Request',
     form_sending: 'Sending...',
     form_success_title: 'Booking Request Received!',
