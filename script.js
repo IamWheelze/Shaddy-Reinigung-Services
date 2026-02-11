@@ -269,14 +269,12 @@ const translations = {
     faq6_a: 'Ja, wir verfügen über eine vollständige Haftpflichtversicherung. Im unwahrscheinlichen Fall eines Schadens sind Sie vollständig abgesichert.',
 
     // Gallery
-    gallery_title: 'Vorher & Nachher',
-    gallery_subtitle: 'Sehen Sie die Ergebnisse unserer Arbeit',
-    gallery1_label: 'Küche - Vorher/Nachher',
-    gallery2_label: 'Badezimmer Tiefenreinigung',
-    gallery3_label: 'Wohnzimmer Grundreinigung',
-    gallery4_label: 'Büroreinigung',
-    gallery5_label: 'Fensterreinigung',
-    gallery6_label: 'Grundreinigung Nachher',
+    gallery_title: 'Sehen Sie den Unterschied',
+    gallery_subtitle: 'Echte Ergebnisse unserer professionellen Reinigung',
+    gallery1_label: 'Makellose Sauberkeit',
+    gallery2_label: 'Strahlend Rein',
+    gallery3_label: 'Perfekte Verwandlung',
+    gallery4_label: 'Wie Neu',
 
     // Booking
     booking_title: 'Buchen Sie Jetzt Ihre Reinigung',
@@ -426,14 +424,12 @@ const translations = {
     faq6_a: 'Yes, we have comprehensive liability insurance. In the unlikely event of damage, you are fully covered.',
 
     // Gallery
-    gallery_title: 'Before & After',
-    gallery_subtitle: 'See the results of our work',
-    gallery1_label: 'Kitchen - Before/After',
-    gallery2_label: 'Bathroom Deep Cleaning',
-    gallery3_label: 'Living Room Basic Cleaning',
-    gallery4_label: 'Office Cleaning',
-    gallery5_label: 'Window Cleaning',
-    gallery6_label: 'Deep Cleaning After',
+    gallery_title: 'See The Difference',
+    gallery_subtitle: 'Real results from our professional cleaning',
+    gallery1_label: 'Spotless Clean',
+    gallery2_label: 'Sparkling Fresh',
+    gallery3_label: 'Perfect Transformation',
+    gallery4_label: 'Good As New',
 
     // Booking
     booking_title: 'Book Your Cleaning Now',
