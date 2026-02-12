@@ -578,3 +578,21 @@ themeToggle.addEventListener('click', () => {
   applyTheme(newTheme);
   localStorage.setItem('theme', newTheme);
 });
+
+// Resolve Imgur album URLs to direct image URLs
+document.querySelectorAll('img[data-imgur-album]').forEach(img => {
+  const albumHash = img.dataset.imgurAlbum;
+  fetch(`https://api.imgur.com/3/album/${albumHash}`, {
+    headers: { Authorization: 'Client-ID 546c25a59c58ad7' }
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.data && data.data.images && data.data.images.length > 0) {
+        img.src = data.data.images[0].link;
+      }
+    })
+    .catch(() => {
+      // Fallback: try direct image URL with album hash
+      img.src = `https://i.imgur.com/${albumHash}.jpeg`;
+    });
+});
