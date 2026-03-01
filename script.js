@@ -148,6 +148,70 @@ bookingForm.addEventListener('submit', async function(e) {
     }
 });
 
+// Image Upload
+const uploadArea = document.getElementById('uploadArea');
+const fileInput = document.getElementById('fileInput');
+const uploadPreviews = document.getElementById('uploadPreviews');
+let uploadedFiles = [];
+const MAX_FILES = 5;
+const MAX_SIZE = 10 * 1024 * 1024; // 10MB
+const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
+
+uploadArea.addEventListener('click', () => fileInput.click());
+uploadArea.addEventListener('dragover', (e) => { e.preventDefault(); uploadArea.classList.add('drag-over'); });
+uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('drag-over'));
+uploadArea.addEventListener('drop', (e) => {
+  e.preventDefault();
+  uploadArea.classList.remove('drag-over');
+  handleFiles(e.dataTransfer.files);
+});
+fileInput.addEventListener('change', () => { handleFiles(fileInput.files); fileInput.value = ''; });
+
+function handleFiles(files) {
+  for (const file of files) {
+    if (uploadedFiles.length >= MAX_FILES) break;
+    if (!ALLOWED_TYPES.includes(file.type)) continue;
+    if (file.size > MAX_SIZE) continue;
+    uploadedFiles.push(file);
+    addPreview(file, uploadedFiles.length - 1);
+  }
+  updateFileInput();
+}
+
+function addPreview(file, index) {
+  const div = document.createElement('div');
+  div.className = 'upload-preview';
+  div.dataset.index = index;
+  const img = document.createElement('img');
+  img.src = URL.createObjectURL(file);
+  img.alt = file.name;
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'remove-btn';
+  btn.textContent = '\u00D7';
+  btn.addEventListener('click', () => removeFile(index));
+  div.appendChild(img);
+  div.appendChild(btn);
+  uploadPreviews.appendChild(div);
+}
+
+function removeFile(index) {
+  uploadedFiles.splice(index, 1);
+  renderPreviews();
+  updateFileInput();
+}
+
+function renderPreviews() {
+  uploadPreviews.innerHTML = '';
+  uploadedFiles.forEach((file, idx) => addPreview(file, idx));
+}
+
+function updateFileInput() {
+  const dt = new DataTransfer();
+  uploadedFiles.forEach(f => dt.items.add(f));
+  fileInput.files = dt.files;
+}
+
 // Year
 document.getElementById('year').textContent=new Date().getFullYear();
 
@@ -160,6 +224,7 @@ const translations = {
     nav_services: 'Leistungen',
     nav_testimonials: 'Bewertungen',
     nav_faq: 'FAQ',
+    nav_ourwork: 'Unsere Arbeit',
     nav_gallery: 'Galerie',
     nav_booking: 'Buchen',
     nav_contact: 'Kontakt',
@@ -269,6 +334,10 @@ const translations = {
     faq6_a: 'Ja, wir verfügen über eine vollständige Haftpflichtversicherung. Im unwahrscheinlichen Fall eines Schadens sind Sie vollständig abgesichert.',
 
     // Gallery
+    // Our Work
+    ourwork_title: 'Unsere Arbeit',
+    ourwork_subtitle: 'Echte Ergebnisse von unseren Reinigungseinsätzen',
+
     gallery_title: 'Vorher & Nachher',
     gallery_subtitle: 'Sehen Sie die Ergebnisse unserer Arbeit',
     gallery1_label: 'Küche - Vorher/Nachher',
@@ -294,6 +363,9 @@ const translations = {
     form_days: 'Wochentage (für wiederkehrende Reinigung)',
     form_extras: 'Extras',
     form_notes: 'Notizen / Besondere Wünsche',
+    form_photos: 'Fotos hochladen (optional)',
+    upload_text: 'Bilder hierher ziehen oder klicken zum Auswählen',
+    upload_hint: 'Max. 5 Bilder, je max. 10 MB (JPG, PNG, WEBP)',
     form_submit: 'Buchungsanfrage Senden',
     form_sending: 'Wird gesendet...',
     form_success_title: 'Buchungsanfrage Erhalten!',
@@ -317,6 +389,7 @@ const translations = {
     nav_services: 'Services',
     nav_testimonials: 'Testimonials',
     nav_faq: 'FAQ',
+    nav_ourwork: 'Our Work',
     nav_gallery: 'Gallery',
     nav_booking: 'Book',
     nav_contact: 'Contact',
@@ -426,6 +499,10 @@ const translations = {
     faq6_a: 'Yes, we have comprehensive liability insurance. In the unlikely event of damage, you are fully covered.',
 
     // Gallery
+    // Our Work
+    ourwork_title: 'Our Work',
+    ourwork_subtitle: 'Real results from our cleaning projects',
+
     gallery_title: 'Before & After',
     gallery_subtitle: 'See the results of our work',
     gallery1_label: 'Kitchen - Before/After',
@@ -451,6 +528,9 @@ const translations = {
     form_days: 'Weekdays (for recurring cleaning)',
     form_extras: 'Extras',
     form_notes: 'Notes / Special Requests',
+    form_photos: 'Upload Photos (optional)',
+    upload_text: 'Drag images here or click to browse',
+    upload_hint: 'Max. 5 images, max. 10 MB each (JPG, PNG, WEBP)',
     form_submit: 'Submit Booking Request',
     form_sending: 'Sending...',
     form_success_title: 'Booking Request Received!',
