@@ -224,6 +224,7 @@ const translations = {
     nav_services: 'Leistungen',
     nav_testimonials: 'Bewertungen',
     nav_faq: 'FAQ',
+    nav_ourwork: 'Unsere Arbeit',
     nav_gallery: 'Galerie',
     nav_booking: 'Buchen',
     nav_contact: 'Kontakt',
@@ -333,6 +334,10 @@ const translations = {
     faq6_a: 'Ja, wir verfügen über eine vollständige Haftpflichtversicherung. Im unwahrscheinlichen Fall eines Schadens sind Sie vollständig abgesichert.',
 
     // Gallery
+    // Our Work
+    ourwork_title: 'Unsere Arbeit',
+    ourwork_subtitle: 'Echte Ergebnisse von unseren Reinigungseinsätzen',
+
     gallery_title: 'Vorher & Nachher',
     gallery_subtitle: 'Sehen Sie die Ergebnisse unserer Arbeit',
     gallery1_label: 'Küche - Vorher/Nachher',
@@ -384,6 +389,7 @@ const translations = {
     nav_services: 'Services',
     nav_testimonials: 'Testimonials',
     nav_faq: 'FAQ',
+    nav_ourwork: 'Our Work',
     nav_gallery: 'Gallery',
     nav_booking: 'Book',
     nav_contact: 'Contact',
@@ -493,6 +499,10 @@ const translations = {
     faq6_a: 'Yes, we have comprehensive liability insurance. In the unlikely event of damage, you are fully covered.',
 
     // Gallery
+    // Our Work
+    ourwork_title: 'Our Work',
+    ourwork_subtitle: 'Real results from our cleaning projects',
+
     gallery_title: 'Before & After',
     gallery_subtitle: 'See the results of our work',
     gallery1_label: 'Kitchen - Before/After',
