@@ -305,7 +305,7 @@ const translations = {
 
     // Booking
     booking_title: 'Buchen Sie Jetzt Ihre Reinigung',
-    booking_lead: 'Senden Sie Ihre Anfrage und wir antworten von <strong>info@shaddyreinigungservice.com</strong> innerhalb von 24 Stunden.',
+    booking_lead: 'Senden Sie Ihre Anfrage und wir antworten von <strong>shaddyreinigung@gmail.com</strong> innerhalb von 24 Stunden.',
     form_name: 'Vollständiger Name',
     form_email: 'E-Mail',
     form_phone: 'Telefon',
@@ -322,11 +322,11 @@ const translations = {
     form_submit: 'Buchungsanfrage Senden',
     form_sending: 'Wird gesendet...',
     form_success_title: 'Buchungsanfrage Erhalten!',
-    form_success_text: 'Vielen Dank für Ihre Buchungsanfrage. Wir kontaktieren Sie unter <strong>info@shaddyreinigungservice.com</strong> innerhalb von 24 Stunden um Ihren Termin zu bestätigen.',
+    form_success_text: 'Vielen Dank für Ihre Buchungsanfrage. Wir kontaktieren Sie unter <strong>shaddyreinigung@gmail.com</strong> innerhalb von 24 Stunden um Ihren Termin zu bestätigen.',
     form_success_btn: 'Zurück zur Startseite',
-    form_error: 'Es gab ein Problem beim Absenden des Formulars. Bitte kontaktieren Sie uns direkt unter info@shaddyreinigungservice.com',
+    form_error: 'Es gab ein Problem beim Absenden des Formulars. Bitte kontaktieren Sie uns direkt unter shaddyreinigung@gmail.com',
     privacy_consent: 'Ich habe die <a href="datenschutz.html" target="_blank" style="color:var(--accent);text-decoration:underline">Datenschutzerklärung</a> zur Kenntnis genommen. Ich stimme zu, dass meine Angaben zur Kontaktaufnahme und für Rückfragen dauerhaft gespeichert werden.',
-    form_disclaimer: 'Mit dem Absenden wird Ihre Buchungsanfrage direkt an uns gesendet. Wir kontaktieren Sie von <a href="mailto:info@shaddyreinigungservice.com">info@shaddyreinigungservice.com</a> innerhalb von 24 Stunden um Ihren Termin zu bestätigen.',
+    form_disclaimer: 'Mit dem Absenden wird Ihre Buchungsanfrage direkt an uns gesendet. Wir kontaktieren Sie von <a href="mailto:shaddyreinigung@gmail.com">shaddyreinigung@gmail.com</a> innerhalb von 24 Stunden um Ihren Termin zu bestätigen.',
     price_estimate: 'Geschätzter Preis:',
     price_disclaimer: 'Dies ist eine Schätzung. Der endgültige Preis kann variieren.',
 
@@ -479,7 +479,7 @@ const translations = {
 
     // Booking
     booking_title: 'Book Your Cleaning Now',
-    booking_lead: 'Submit your request and we\'ll reply from <strong>info@shaddyreinigungservice.com</strong> within 24 hours.',
+    booking_lead: 'Submit your request and we\'ll reply from <strong>shaddyreinigung@gmail.com</strong> within 24 hours.',
     form_name: 'Full Name',
     form_email: 'Email',
     form_phone: 'Phone',
@@ -496,11 +496,11 @@ const translations = {
     form_submit: 'Submit Booking Request',
     form_sending: 'Sending...',
     form_success_title: 'Booking Request Received!',
-    form_success_text: 'Thank you for your booking request. We\'ll contact you at <strong>info@shaddyreinigungservice.com</strong> within 24 hours to confirm your appointment.',
+    form_success_text: 'Thank you for your booking request. We\'ll contact you at <strong>shaddyreinigung@gmail.com</strong> within 24 hours to confirm your appointment.',
     form_success_btn: 'Back to Home',
-    form_error: 'There was a problem submitting your form. Please email us directly at info@shaddyreinigungservice.com',
+    form_error: 'There was a problem submitting your form. Please email us directly at shaddyreinigung@gmail.com',
     privacy_consent: 'I have read the <a href="datenschutz.html" target="_blank" style="color:var(--accent);text-decoration:underline">Privacy Policy</a>. I agree that my details will be stored permanently for contact purposes and follow-up questions.',
-    form_disclaimer: 'By submitting, your booking request will be sent to us directly. We\'ll contact you from <a href="mailto:info@shaddyreinigungservice.com">info@shaddyreinigungservice.com</a> within 24 hours to confirm your appointment.',
+    form_disclaimer: 'By submitting, your booking request will be sent to us directly. We\'ll contact you from <a href="mailto:shaddyreinigung@gmail.com">shaddyreinigung@gmail.com</a> within 24 hours to confirm your appointment.',
     price_estimate: 'Estimated Price:',
     price_disclaimer: 'This is an estimate. The final price may vary.',
 
