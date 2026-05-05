@@ -131,11 +131,11 @@ bookingForm.addEventListener('submit', async function(e) {
         if (response.ok) {
             // Show success message using translations
             bookingForm.innerHTML = `
-                <div style="text-align:center; padding:40px 20px; background:rgba(0,191,255,0.1); border:2px solid rgba(0,191,255,0.3); border-radius:16px;">
-                    <div style="font-size:4rem; margin-bottom:16px;">✓</div>
-                    <h3 style="color:#00bfff; margin:0 0 12px; font-family:var(--font-fancy);">${translations[currentLang].form_success_title}</h3>
-                    <p style="color:#cfefff; margin:0 0 24px;">${translations[currentLang].form_success_text}</p>
-                    <a href="#home" style="display:inline-block; background:var(--accent); color:#fff; text-decoration:none; padding:12px 28px; border-radius:12px; font-weight:600;">${translations[currentLang].form_success_btn}</a>
+                <div style="text-align:center; padding:40px 20px; background:var(--accent-light); border:1.5px solid #BFDBFE; border-radius:12px;">
+                    <div style="font-size:3.5rem; margin-bottom:12px;">&#10003;</div>
+                    <h3 style="color:var(--accent); margin:0 0 10px; font-family:var(--font-fancy); font-weight:400;">${translations[currentLang].form_success_title}</h3>
+                    <p style="color:var(--text-light); margin:0 0 24px;">${translations[currentLang].form_success_text}</p>
+                    <a href="#home" style="display:inline-block; background:var(--accent); color:#fff; text-decoration:none; padding:12px 28px; border-radius:8px; font-weight:600;">${translations[currentLang].form_success_btn}</a>
                 </div>
             `;
         } else {
@@ -633,32 +633,6 @@ if (frequencySelect && recurringDays) {
   });
 }
 
-// Theme Toggle
+// Theme toggle (kept for compatibility)
 const themeToggle = document.getElementById('themeToggle');
-const themeIcon = document.getElementById('themeIcon');
-
-// Check for saved theme preference or default to 'dark' (original beautiful theme)
-const savedTheme = localStorage.getItem('theme') || 'dark';
-
-// Apply saved theme on page load
-function applyTheme(theme) {
-  if (theme === 'light') {
-    document.documentElement.setAttribute('data-theme', 'light');
-    themeIcon.textContent = '☀️';
-  } else {
-    document.documentElement.removeAttribute('data-theme');
-    themeIcon.textContent = '🌙';
-  }
-}
-
-// Initialize theme
-applyTheme(savedTheme);
-
-// Toggle theme when button is clicked
-themeToggle.addEventListener('click', () => {
-  const currentTheme = document.documentElement.getAttribute('data-theme');
-  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-
-  applyTheme(newTheme);
-  localStorage.setItem('theme', newTheme);
-});
+if (themeToggle) themeToggle.style.display = 'none';

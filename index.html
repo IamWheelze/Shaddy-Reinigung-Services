@@ -25,19 +25,13 @@
   <meta name="twitter:image" content="https://i.imgur.com/gc5FCRr.png" />
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
 
   <!-- Site CSS -->
   <link rel="stylesheet" href="styles.css" />
 
 </head>
 <body>
-
-  <!-- Site-wide subtle bubbles background -->
-  <div class="page-bubbles" aria-hidden="true">
-    <span></span><span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span><span></span>
-  </div>
 
   <!-- ===== NAVBAR ===== -->
   <header class="navbar">
@@ -62,9 +56,6 @@
           <button class="lang-btn active" data-lang="de" onclick="switchLanguage('de')">DE</button>
           <button class="lang-btn" data-lang="en" onclick="switchLanguage('en')">EN</button>
         </div>
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-          <span id="themeIcon">☀️</span>
-        </button>
         <a href="#booking" class="book-btn" data-i18n="book_btn">Jetzt Buchen</a>
         <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
@@ -74,7 +65,6 @@
   <!-- ===== HERO ===== -->
   <section id="home" class="hero hero-slideshow">
     <div class="slide-bg"></div><div class="slide-bg"></div><div class="slide-bg"></div>
-    <div class="bubbles" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
     <div class="slide-copy">
       <h1 class="slide-title"></h1>
       <p class="slide-sub"></p>
