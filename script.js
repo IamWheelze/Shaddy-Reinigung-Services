@@ -23,19 +23,86 @@ const slides=[
 ];
 let i=0,timer;const hero=document.querySelector('.hero-slideshow'),bgs=hero.querySelectorAll('.slide-bg'),titleEl=hero.querySelector('.slide-title'),subEl=hero.querySelector('.slide-sub'),dots=document.querySelector('.hero-dots');
 slides.forEach((_,n)=>{const d=document.createElement('button');d.setAttribute('aria-label', `Go to slide ${n+1}`);d.addEventListener('click',()=>go(n));dots.appendChild(d)});
-function show(n){i=(n+slides.length)%slides.length;bgs.forEach((b,j)=>{b.style.backgroundImage=`url("${slides[j].image}")`;b.classList.toggle('is-active',j===i)});titleEl.textContent=slides[i].title;subEl.textContent=slides[i].sub;[...dots.children].forEach((d,j)=>d.setAttribute('aria-selected',j===i))}
+function show(n){
+  i=(n+slides.length)%slides.length;
+  bgs.forEach((b,j)=>{b.style.backgroundImage=`url("${slides[j].image}")`;b.classList.toggle('is-active',j===i)});
+  titleEl.style.animation='none';subEl.style.animation='none';
+  titleEl.offsetHeight;
+  titleEl.style.animation='heroFadeUp .8s cubic-bezier(.16,1,.3,1) both';
+  subEl.style.animation='heroFadeUp .8s cubic-bezier(.16,1,.3,1) .15s both';
+  titleEl.textContent=slides[i].title;subEl.textContent=slides[i].sub;
+  [...dots.children].forEach((d,j)=>d.setAttribute('aria-selected',j===i));
+}
 function go(n){show(n);start()}
 function next(){show(i+1)}function prev(){show(i-1)}function start(){stop();timer=setInterval(next,5000)}function stop(){clearInterval(timer)}
 show(0);start();
 document.querySelector('.hero-next').onclick=()=>{next();start()};document.querySelector('.hero-prev').onclick=()=>{prev();start()};
 hero.onmouseenter=stop;hero.onmouseleave=start;
 
-// Scroll reveal for service cards
+// Advanced scroll animation system
 (function(){
-  const io=new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); } });
-  },{threshold:0.15});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  // Assign animation classes based on section context
+  document.querySelectorAll('#services .service-card.reveal').forEach((el, i) => {
+    el.classList.remove('reveal');
+    el.classList.add(i % 2 === 0 ? 'reveal-left' : 'reveal-right');
+  });
+  document.querySelectorAll('.work-item.reveal').forEach(el => {
+    el.classList.remove('reveal');
+    el.classList.add('reveal-clip');
+  });
+  document.querySelectorAll('.gallery-item.reveal').forEach(el => {
+    el.classList.remove('reveal');
+    el.classList.add('reveal-scale');
+  });
+  document.querySelectorAll('.info-card.reveal').forEach(el => {
+    el.classList.remove('reveal');
+    el.classList.add('reveal');
+  });
+
+  const allAnimated = document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale,.reveal-clip');
+  const groups = new Map();
+  allAnimated.forEach(el => {
+    const parent = el.parentElement;
+    if (!groups.has(parent)) groups.set(parent, []);
+    groups.get(parent).push(el);
+  });
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const parent = e.target.parentElement;
+      const siblings = groups.get(parent) || [e.target];
+      const idx = siblings.indexOf(e.target);
+      const delay = idx * 100;
+      e.target.style.transitionDelay = delay + 'ms';
+      e.target.classList.add('in-view');
+      io.unobserve(e.target);
+    });
+  }, { threshold: 0.08 });
+  allAnimated.forEach(el => io.observe(el));
+
+  // Scroll progress bar
+  const bar = document.getElementById('scrollProgress');
+  if (bar) {
+    window.addEventListener('scroll', () => {
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = (window.scrollY / h * 100) + '%';
+    }, { passive: true });
+  }
+
+  // Active nav link highlight on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navAnchors = document.querySelectorAll('.nav-links a');
+  const navIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navAnchors.forEach(a => a.classList.remove('active'));
+        const match = document.querySelector('.nav-links a[href="#' + e.target.id + '"]');
+        if (match) match.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  sections.forEach(s => navIO.observe(s));
 })();
 
 // Prefill service when clicking a service button
@@ -77,13 +144,13 @@ const pricing = {
         'Pressure Washing': 25,
     },
     timeEstimates: {
-        'Studio / 1 Zimmer': 2,
-        '2 Zimmer': 3,
-        '3 Zimmer': 4,
-        '4+ Zimmer': 5,
-        'Office: < 100 m²': 3,
-        'Office: 100–300 m²': 5,
-        'Office: 300+ m²': 8,
+        studio: 2,
+        'two-rooms': 3,
+        'three-rooms': 4,
+        'four-plus': 5,
+        'office-small': 3,
+        'office-medium': 5,
+        'office-large': 8,
     },
     extras: {
         'Inside Oven': 1,
@@ -139,11 +206,11 @@ bookingForm.addEventListener('submit', async function(e) {
         if (response.ok) {
             // Show success message using translations
             bookingForm.innerHTML = `
-                <div style="text-align:center; padding:40px 20px; background:rgba(0,191,255,0.1); border:2px solid rgba(0,191,255,0.3); border-radius:16px;">
-                    <div style="font-size:4rem; margin-bottom:16px;">✓</div>
-                    <h3 style="color:#00bfff; margin:0 0 12px; font-family:var(--font-fancy);">${translations[currentLang].form_success_title}</h3>
-                    <p style="color:#cfefff; margin:0 0 24px;">${translations[currentLang].form_success_text}</p>
-                    <a href="#home" style="display:inline-block; background:var(--accent); color:#fff; text-decoration:none; padding:12px 28px; border-radius:12px; font-weight:600;">${translations[currentLang].form_success_btn}</a>
+                <div style="text-align:center; padding:40px 20px; background:var(--accent-light); border:1.5px solid #BFDBFE; border-radius:12px;">
+                    <div style="font-size:3.5rem; margin-bottom:12px;">&#10003;</div>
+                    <h3 style="color:var(--accent); margin:0 0 10px; font-family:var(--font-fancy); font-weight:400;">${translations[currentLang].form_success_title}</h3>
+                    <p style="color:var(--text-light); margin:0 0 24px;">${translations[currentLang].form_success_text}</p>
+                    <a href="#home" style="display:inline-block; background:var(--accent); color:#fff; text-decoration:none; padding:12px 28px; border-radius:8px; font-weight:600;">${translations[currentLang].form_success_btn}</a>
                 </div>
             `;
         } else {
@@ -155,6 +222,70 @@ bookingForm.addEventListener('submit', async function(e) {
         submitBtn.disabled = false;
     }
 });
+
+// Image Upload
+const uploadArea = document.getElementById('uploadArea');
+const fileInput = document.getElementById('fileInput');
+const uploadPreviews = document.getElementById('uploadPreviews');
+let uploadedFiles = [];
+const MAX_FILES = 5;
+const MAX_SIZE = 10 * 1024 * 1024; // 10MB
+const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
+
+uploadArea.addEventListener('click', () => fileInput.click());
+uploadArea.addEventListener('dragover', (e) => { e.preventDefault(); uploadArea.classList.add('drag-over'); });
+uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('drag-over'));
+uploadArea.addEventListener('drop', (e) => {
+  e.preventDefault();
+  uploadArea.classList.remove('drag-over');
+  handleFiles(e.dataTransfer.files);
+});
+fileInput.addEventListener('change', () => { handleFiles(fileInput.files); fileInput.value = ''; });
+
+function handleFiles(files) {
+  for (const file of files) {
+    if (uploadedFiles.length >= MAX_FILES) break;
+    if (!ALLOWED_TYPES.includes(file.type)) continue;
+    if (file.size > MAX_SIZE) continue;
+    uploadedFiles.push(file);
+    addPreview(file, uploadedFiles.length - 1);
+  }
+  updateFileInput();
+}
+
+function addPreview(file, index) {
+  const div = document.createElement('div');
+  div.className = 'upload-preview';
+  div.dataset.index = index;
+  const img = document.createElement('img');
+  img.src = URL.createObjectURL(file);
+  img.alt = file.name;
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'remove-btn';
+  btn.textContent = '\u00D7';
+  btn.addEventListener('click', () => removeFile(index));
+  div.appendChild(img);
+  div.appendChild(btn);
+  uploadPreviews.appendChild(div);
+}
+
+function removeFile(index) {
+  uploadedFiles.splice(index, 1);
+  renderPreviews();
+  updateFileInput();
+}
+
+function renderPreviews() {
+  uploadPreviews.innerHTML = '';
+  uploadedFiles.forEach((file, idx) => addPreview(file, idx));
+}
+
+function updateFileInput() {
+  const dt = new DataTransfer();
+  uploadedFiles.forEach(f => dt.items.add(f));
+  fileInput.files = dt.files;
+}
 
 // Year
 document.getElementById('year').textContent=new Date().getFullYear();
@@ -169,6 +300,7 @@ const translations = {
     nav_testimonials: 'Bewertungen',
     nav_faq: 'FAQ',
     nav_pricing: 'Preise',
+    nav_ourwork: 'Unsere Arbeit',
     nav_gallery: 'Galerie',
     nav_booking: 'Buchen',
     nav_contact: 'Kontakt',
@@ -302,6 +434,18 @@ const translations = {
     gallery2_label: 'Strahlend Rein',
     gallery3_label: 'Perfekte Verwandlung',
     gallery4_label: 'Wie Neu',
+    // Our Work
+    ourwork_title: 'Unsere Arbeit',
+    ourwork_subtitle: 'Echte Ergebnisse von unseren Reinigungseinsätzen',
+
+    gallery_title: 'Vorher & Nachher',
+    gallery_subtitle: 'Sehen Sie die Ergebnisse unserer Arbeit',
+    gallery1_label: 'Küche - Vorher/Nachher',
+    gallery2_label: 'Badezimmer Tiefenreinigung',
+    gallery3_label: 'Wohnzimmer Grundreinigung',
+    gallery4_label: 'Büroreinigung',
+    gallery5_label: 'Fensterreinigung',
+    gallery6_label: 'Grundreinigung Nachher',
 
     // Booking
     booking_title: 'Buchen Sie Jetzt Ihre Reinigung',
@@ -319,8 +463,50 @@ const translations = {
     form_days: 'Wochentage (für wiederkehrende Reinigung)',
     form_extras: 'Extras',
     form_notes: 'Notizen / Besondere Wünsche',
+    form_photos: 'Fotos hochladen (optional)',
+    upload_text: 'Bilder hierher ziehen oder klicken zum Auswählen',
+    upload_hint: 'Max. 5 Bilder, je max. 10 MB (JPG, PNG, WEBP)',
     form_submit: 'Buchungsanfrage Senden',
     form_sending: 'Wird gesendet...',
+    placeholder_name: 'Ihr Name',
+    placeholder_email: 'max@example.com',
+    placeholder_phone: '+49 ...',
+    placeholder_address: 'Straße, Nr.',
+    placeholder_postcode: '76133 Karlsruhe',
+    placeholder_notes: 'Parkinformationen, Haustier, Zugangscode usw.',
+    option_select_service: 'Service auswählen',
+    option_house: 'Hausreinigung',
+    option_office: 'Büroreinigung',
+    option_deep: 'Grundreinigung',
+    option_move: 'Umzugsreinigung',
+    option_window: 'Fensterreinigung',
+    option_post: 'Baureinigung',
+    option_airbnb: 'Airbnb / Kurzzeitvermietung',
+    option_carpet: 'Teppich & Polster',
+    option_pressure: 'Hochdruckreinigung',
+    option_onetime: 'Einmalig',
+    option_weekly: 'Wöchentlich',
+    option_biweekly: 'Alle zwei Wochen',
+    option_monthly: 'Monatlich',
+    option_size_studio: 'Studio / 1 Zimmer',
+    option_size_two: '2 Zimmer',
+    option_size_three: '3 Zimmer',
+    option_size_four: '4+ Zimmer',
+    option_size_office_small: 'Büro: < 100 m²',
+    option_size_office_med: 'Büro: 100–300 m²',
+    option_size_office_large: 'Büro: 300+ m²',
+    extra_oven: 'Backofen innen',
+    extra_fridge: 'Kühlschrank innen',
+    extra_windows: 'Fenster',
+    extra_balcony: 'Balkon/Terrasse',
+    extra_ironing: 'Bügeln',
+    day_mon: 'Mo',
+    day_tue: 'Di',
+    day_wed: 'Mi',
+    day_thu: 'Do',
+    day_fri: 'Fr',
+    day_sat: 'Sa',
+    day_sun: 'So',
     form_success_title: 'Buchungsanfrage Erhalten!',
     form_success_text: 'Vielen Dank für Ihre Buchungsanfrage. Wir kontaktieren Sie unter <strong>shaddyreinigung@gmail.com</strong> innerhalb von 24 Stunden um Ihren Termin zu bestätigen.',
     form_success_btn: 'Zurück zur Startseite',
@@ -343,6 +529,7 @@ const translations = {
     nav_testimonials: 'Testimonials',
     nav_faq: 'FAQ',
     nav_pricing: 'Pricing',
+    nav_ourwork: 'Our Work',
     nav_gallery: 'Gallery',
     nav_booking: 'Book',
     nav_contact: 'Contact',
@@ -476,6 +663,18 @@ const translations = {
     gallery2_label: 'Sparkling Fresh',
     gallery3_label: 'Perfect Transformation',
     gallery4_label: 'Good As New',
+    // Our Work
+    ourwork_title: 'Our Work',
+    ourwork_subtitle: 'Real results from our cleaning projects',
+
+    gallery_title: 'Before & After',
+    gallery_subtitle: 'See the results of our work',
+    gallery1_label: 'Kitchen - Before/After',
+    gallery2_label: 'Bathroom Deep Cleaning',
+    gallery3_label: 'Living Room Basic Cleaning',
+    gallery4_label: 'Office Cleaning',
+    gallery5_label: 'Window Cleaning',
+    gallery6_label: 'Deep Cleaning After',
 
     // Booking
     booking_title: 'Book Your Cleaning Now',
@@ -493,8 +692,50 @@ const translations = {
     form_days: 'Weekdays (for recurring cleaning)',
     form_extras: 'Extras',
     form_notes: 'Notes / Special Requests',
+    form_photos: 'Upload Photos (optional)',
+    upload_text: 'Drag images here or click to browse',
+    upload_hint: 'Max. 5 images, max. 10 MB each (JPG, PNG, WEBP)',
     form_submit: 'Submit Booking Request',
     form_sending: 'Sending...',
+    placeholder_name: 'Your Name',
+    placeholder_email: 'you@example.com',
+    placeholder_phone: '+49 ...',
+    placeholder_address: 'Street, No.',
+    placeholder_postcode: '76133 Karlsruhe',
+    placeholder_notes: 'Parking info, pet at home, access code, etc.',
+    option_select_service: 'Select Service',
+    option_house: 'House Cleaning',
+    option_office: 'Office Cleaning',
+    option_deep: 'Deep Cleaning',
+    option_move: 'Move-In / Move-Out',
+    option_window: 'Window Cleaning',
+    option_post: 'Post-Construction',
+    option_airbnb: 'Airbnb / Short‑Stay',
+    option_carpet: 'Carpet & Upholstery',
+    option_pressure: 'Pressure Washing',
+    option_onetime: 'One‑time',
+    option_weekly: 'Weekly',
+    option_biweekly: 'Bi‑weekly',
+    option_monthly: 'Monthly',
+    option_size_studio: 'Studio / 1 Room',
+    option_size_two: '2 Rooms',
+    option_size_three: '3 Rooms',
+    option_size_four: '4+ Rooms',
+    option_size_office_small: 'Office: < 100 m²',
+    option_size_office_med: 'Office: 100–300 m²',
+    option_size_office_large: 'Office: 300+ m²',
+    extra_oven: 'Inside Oven',
+    extra_fridge: 'Inside Fridge',
+    extra_windows: 'Windows',
+    extra_balcony: 'Balcony/Patio',
+    extra_ironing: 'Ironing',
+    day_mon: 'Mon',
+    day_tue: 'Tue',
+    day_wed: 'Wed',
+    day_thu: 'Thu',
+    day_fri: 'Fri',
+    day_sat: 'Sat',
+    day_sun: 'Sun',
     form_success_title: 'Booking Request Received!',
     form_success_text: 'Thank you for your booking request. We\'ll contact you at <strong>shaddyreinigung@gmail.com</strong> within 24 hours to confirm your appointment.',
     form_success_btn: 'Back to Home',
@@ -526,12 +767,19 @@ function switchLanguage(lang) {
   // Update all translatable elements
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.dataset.i18n;
-    if (translations[lang][key]) {
-      // Check if element should use innerHTML (contains HTML tags)
-      if (translations[lang][key].includes('<')) {
-        el.innerHTML = translations[lang][key];
+    const translation = translations[lang][key];
+    if (translation) {
+      const target = el.dataset.i18nTarget;
+      const hasHTML = /<[^>]+>/.test(translation);
+
+      if (target === 'placeholder') {
+        el.setAttribute('placeholder', translation);
+      } else if (target === 'value') {
+        el.value = translation;
+      } else if (hasHTML) {
+        el.innerHTML = translation;
       } else {
-        el.textContent = translations[lang][key];
+        el.textContent = translation;
       }
     }
   });
@@ -595,7 +843,7 @@ if (frequencySelect && recurringDays) {
   });
 }
 
-// Theme Toggle
+// Theme toggle (kept for compatibility)
 const themeToggle = document.getElementById('themeToggle');
 const themeIcon = document.getElementById('themeIcon');
 
@@ -642,3 +890,4 @@ document.querySelectorAll('img[data-imgur-album]').forEach(img => {
       img.src = `https://i.imgur.com/${albumHash}.jpeg`;
     });
 });
+if (themeToggle) themeToggle.style.display = 'none';
