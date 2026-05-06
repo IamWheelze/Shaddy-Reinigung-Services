@@ -23,19 +23,86 @@ const slides=[
 ];
 let i=0,timer;const hero=document.querySelector('.hero-slideshow'),bgs=hero.querySelectorAll('.slide-bg'),titleEl=hero.querySelector('.slide-title'),subEl=hero.querySelector('.slide-sub'),dots=document.querySelector('.hero-dots');
 slides.forEach((_,n)=>{const d=document.createElement('button');d.setAttribute('aria-label', `Go to slide ${n+1}`);d.addEventListener('click',()=>go(n));dots.appendChild(d)});
-function show(n){i=(n+slides.length)%slides.length;bgs.forEach((b,j)=>{b.style.backgroundImage=`url("${slides[j].image}")`;b.classList.toggle('is-active',j===i)});titleEl.textContent=slides[i].title;subEl.textContent=slides[i].sub;[...dots.children].forEach((d,j)=>d.setAttribute('aria-selected',j===i))}
+function show(n){
+  i=(n+slides.length)%slides.length;
+  bgs.forEach((b,j)=>{b.style.backgroundImage=`url("${slides[j].image}")`;b.classList.toggle('is-active',j===i)});
+  titleEl.style.animation='none';subEl.style.animation='none';
+  titleEl.offsetHeight;
+  titleEl.style.animation='heroFadeUp .8s cubic-bezier(.16,1,.3,1) both';
+  subEl.style.animation='heroFadeUp .8s cubic-bezier(.16,1,.3,1) .15s both';
+  titleEl.textContent=slides[i].title;subEl.textContent=slides[i].sub;
+  [...dots.children].forEach((d,j)=>d.setAttribute('aria-selected',j===i));
+}
 function go(n){show(n);start()}
 function next(){show(i+1)}function prev(){show(i-1)}function start(){stop();timer=setInterval(next,5000)}function stop(){clearInterval(timer)}
 show(0);start();
 document.querySelector('.hero-next').onclick=()=>{next();start()};document.querySelector('.hero-prev').onclick=()=>{prev();start()};
 hero.onmouseenter=stop;hero.onmouseleave=start;
 
-// Scroll reveal for service cards
+// Advanced scroll animation system
 (function(){
-  const io=new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); } });
-  },{threshold:0.15});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  // Assign animation classes based on section context
+  document.querySelectorAll('#services .service-card.reveal').forEach((el, i) => {
+    el.classList.remove('reveal');
+    el.classList.add(i % 2 === 0 ? 'reveal-left' : 'reveal-right');
+  });
+  document.querySelectorAll('.work-item.reveal').forEach(el => {
+    el.classList.remove('reveal');
+    el.classList.add('reveal-clip');
+  });
+  document.querySelectorAll('.gallery-item.reveal').forEach(el => {
+    el.classList.remove('reveal');
+    el.classList.add('reveal-scale');
+  });
+  document.querySelectorAll('.info-card.reveal').forEach(el => {
+    el.classList.remove('reveal');
+    el.classList.add('reveal');
+  });
+
+  const allAnimated = document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale,.reveal-clip');
+  const groups = new Map();
+  allAnimated.forEach(el => {
+    const parent = el.parentElement;
+    if (!groups.has(parent)) groups.set(parent, []);
+    groups.get(parent).push(el);
+  });
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const parent = e.target.parentElement;
+      const siblings = groups.get(parent) || [e.target];
+      const idx = siblings.indexOf(e.target);
+      const delay = idx * 100;
+      e.target.style.transitionDelay = delay + 'ms';
+      e.target.classList.add('in-view');
+      io.unobserve(e.target);
+    });
+  }, { threshold: 0.08 });
+  allAnimated.forEach(el => io.observe(el));
+
+  // Scroll progress bar
+  const bar = document.getElementById('scrollProgress');
+  if (bar) {
+    window.addEventListener('scroll', () => {
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = (window.scrollY / h * 100) + '%';
+    }, { passive: true });
+  }
+
+  // Active nav link highlight on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navAnchors = document.querySelectorAll('.nav-links a');
+  const navIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navAnchors.forEach(a => a.classList.remove('active'));
+        const match = document.querySelector('.nav-links a[href="#' + e.target.id + '"]');
+        if (match) match.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  sections.forEach(s => navIO.observe(s));
 })();
 
 // Prefill service when clicking a service button
