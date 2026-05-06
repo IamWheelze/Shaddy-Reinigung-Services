@@ -30,12 +30,27 @@ show(0);start();
 document.querySelector('.hero-next').onclick=()=>{next();start()};document.querySelector('.hero-prev').onclick=()=>{prev();start()};
 hero.onmouseenter=stop;hero.onmouseleave=start;
 
-// Scroll reveal for service cards
+// Staggered scroll reveal
 (function(){
-  const io=new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); } });
-  },{threshold:0.15});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  const groups = new Map();
+  document.querySelectorAll('.reveal').forEach(el => {
+    const parent = el.parentElement;
+    if (!groups.has(parent)) groups.set(parent, []);
+    groups.get(parent).push(el);
+  });
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const parent = e.target.parentElement;
+      const siblings = groups.get(parent) || [e.target];
+      const idx = siblings.indexOf(e.target);
+      const delay = idx * 80;
+      e.target.style.transitionDelay = delay + 'ms';
+      e.target.classList.add('in-view');
+      io.unobserve(e.target);
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 })();
 
 // Prefill service when clicking a service button

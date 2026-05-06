@@ -27,8 +27,19 @@ body{
 .section{padding:80px 20px}
 .wrap{max-width:1080px;margin:0 auto}
 
-.reveal{opacity:0;transform:translateY(16px);transition:opacity .5s,transform .5s}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease-out,transform .6s ease-out}
 .reveal.in-view{opacity:1;transform:none}
+
+.section-title{
+  font-family:var(--font-fancy);font-weight:400;
+  font-size:clamp(1.8rem,4vw,2.6rem);
+  text-align:center;margin-bottom:8px;
+}
+.section-sub{
+  text-align:center;color:var(--text-light);
+  font-size:clamp(.9rem,1.8vw,1.05rem);
+  max-width:560px;margin:0 auto 40px;
+}
 
 /* === NAVBAR === */
 .navbar{
