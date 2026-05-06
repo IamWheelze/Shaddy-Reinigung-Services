@@ -54,11 +54,6 @@ hero.onmouseenter=stop;hero.onmouseleave=start;
     el.classList.remove('reveal');
     el.classList.add('reveal-scale');
   });
-  document.querySelectorAll('.info-card.reveal').forEach(el => {
-    el.classList.remove('reveal');
-    el.classList.add('reveal');
-  });
-
   const allAnimated = document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale,.reveal-clip');
   const groups = new Map();
   allAnimated.forEach(el => {

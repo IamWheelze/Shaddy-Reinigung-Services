@@ -181,11 +181,13 @@ body{
   font-size:clamp(2.8rem,6vw,5rem);
   margin-bottom:20px;line-height:1.1;font-weight:400;
   letter-spacing:-.02em;
+  animation:heroFadeUp .8s cubic-bezier(.16,1,.3,1) both;
 }
 .slide-sub{
   font-size:clamp(1rem,2.2vw,1.25rem);
   max-width:540px;margin:0 auto 36px;
   color:rgba(255,255,255,.8);font-weight:400;
+  animation:heroFadeUp .8s cubic-bezier(.16,1,.3,1) .15s both;
 }
 .slide-cta{
   display:inline-block;padding:16px 44px;
@@ -213,12 +215,6 @@ body{
   50%{transform:translateX(-50%) translateY(8px)}
 }
 
-.slide-title{
-  animation:heroFadeUp .8s cubic-bezier(.16,1,.3,1) both;
-}
-.slide-sub{
-  animation:heroFadeUp .8s cubic-bezier(.16,1,.3,1) .15s both;
-}
 @keyframes heroFadeUp{
   from{opacity:0;transform:translateY(20px)}
   to{opacity:1;transform:none}
@@ -334,6 +330,7 @@ body{
   padding:20px 0;cursor:pointer;
   display:flex;justify-content:space-between;align-items:center;
   font-weight:600;font-size:.95rem;color:var(--text);
+  transition:color .2s;
 }
 .faq-question:hover{color:var(--accent)}
 .faq-icon{transition:transform .3s;font-size:.9rem;color:var(--text-light)}
@@ -344,13 +341,12 @@ body{
   color:var(--text-light);line-height:1.7;font-size:.9rem;
 }
 .faq-item.active .faq-answer{max-height:500px;padding-bottom:20px}
-.faq-question{transition:color .2s}
-.faq-item:hover .faq-question{color:var(--accent)}
 
 /* === OUR WORK === */
 #our-work{background:var(--bg-dark);color:#fff}
-#our-work h2{color:#fff}
-#our-work p{color:rgba(255,255,255,.6)}
+#our-work .section-title{color:#fff}
+#our-work .section-title::after{background:#fff}
+#our-work .section-sub{color:rgba(255,255,255,.6)}
 .work-grid{
   display:grid;grid-template-columns:repeat(3,1fr);
   gap:12px;margin-top:40px;
@@ -405,7 +401,8 @@ body{
 
 /* === BOOKING === */
 #booking{background:var(--bg-dark);color:#fff}
-#booking h2{color:#fff}
+#booking .section-title{color:#fff}
+#booking .section-title::after{background:#fff}
 .booking-container{
   max-width:800px;margin:0 auto;padding:0;
 }
