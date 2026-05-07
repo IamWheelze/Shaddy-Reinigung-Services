@@ -120,15 +120,23 @@ const extrasCheckboxes = document.querySelectorAll('input[name="Extras"]');
 
 const pricing = {
     baseRates: {
-        'House Cleaning': 25,
-        'Office Cleaning': 25,
-        'Deep Cleaning': 30,
-        'Move-In / Move-Out': 30,
+        'House Cleaning': 23,
+        'Office Cleaning': 27,
+        'Deep Cleaning': 23,
+        'One-Time Cleaning': 23,
+        'Regular Weekly': 22,
+        'Regular Bi-Weekly': 22,
+        'Move-In / Move-Out': 25,
         'Window Cleaning': 25,
-        'Post-Construction': 30,
-        'Airbnb / Short‑Stay': 25,
+        'Glass Cleaning': 25,
+        'Staircase Cleaning': 22,
+        'Nursing & Retirement Home': 25,
+        'Gym & Hall Cleaning': 23,
+        'School & Kindergarten': 25,
+        'Post-Construction': 25,
+        'Airbnb / Short‑Stay': 23,
         'Carpet & Upholstery': 25,
-        'Pressure Washing': 30,
+        'Pressure Washing': 25,
     },
     timeEstimates: {
         studio: 2,
@@ -286,6 +294,7 @@ const translations = {
     nav_services: 'Leistungen',
     nav_testimonials: 'Bewertungen',
     nav_faq: 'FAQ',
+    nav_pricing: 'Preise',
     nav_ourwork: 'Unsere Arbeit',
     nav_gallery: 'Galerie',
     nav_booking: 'Buchen',
@@ -395,7 +404,31 @@ const translations = {
     faq6_q: 'Sind Sie versichert?',
     faq6_a: 'Ja, wir verfügen über eine vollständige Haftpflichtversicherung. Im unwahrscheinlichen Fall eines Schadens sind Sie vollständig abgesichert.',
 
+    // Pricing
+    pricing_title: 'Unsere Preise',
+    pricing_subtitle: 'Transparente Preise für alle unsere Reinigungsleistungen',
+    pricing_cat_residential: 'Privathaushalte',
+    pricing_cat_commercial: 'Gewerbe & Einrichtungen',
+    pricing_onetime: 'Einmalige Reinigung',
+    pricing_deep: 'Grundreinigung',
+    pricing_biweekly: 'Regelmäßig alle 2 Wochen',
+    pricing_weekly: 'Regelmäßig jede Woche',
+    pricing_glass: 'Glasreinigung',
+    pricing_steps: 'Treppenreinigung',
+    pricing_office: 'Büroreinigung',
+    pricing_nursing: 'Pflege- & Altenheime',
+    pricing_gym: 'Fitness- & Hallenreinigung',
+    pricing_school: 'Schule & Kindergarten',
+    pricing_tax_note: 'Alle Preise verstehen sich zzgl. 19% MwSt. Die MwSt. wird auf der Rechnung separat ausgewiesen.',
+    pricing_cta: 'Jetzt Angebot Anfragen',
+
     // Gallery
+    gallery_title: 'Sehen Sie den Unterschied',
+    gallery_subtitle: 'Echte Ergebnisse unserer professionellen Reinigung',
+    gallery1_label: 'Makellose Sauberkeit',
+    gallery2_label: 'Strahlend Rein',
+    gallery3_label: 'Perfekte Verwandlung',
+    gallery4_label: 'Wie Neu',
     // Our Work
     ourwork_title: 'Unsere Arbeit',
     ourwork_subtitle: 'Echte Ergebnisse von unseren Reinigungseinsätzen',
@@ -411,7 +444,7 @@ const translations = {
 
     // Booking
     booking_title: 'Buchen Sie Jetzt Ihre Reinigung',
-    booking_lead: 'Senden Sie Ihre Anfrage und wir antworten von <strong>info@shaddyreinigungservice.com</strong> innerhalb von 24 Stunden.',
+    booking_lead: 'Senden Sie Ihre Anfrage und wir antworten von <strong>shaddyreinigung@gmail.com</strong> innerhalb von 24 Stunden.',
     form_name: 'Vollständiger Name',
     form_email: 'E-Mail',
     form_phone: 'Telefon',
@@ -470,11 +503,11 @@ const translations = {
     day_sat: 'Sa',
     day_sun: 'So',
     form_success_title: 'Buchungsanfrage Erhalten!',
-    form_success_text: 'Vielen Dank für Ihre Buchungsanfrage. Wir kontaktieren Sie unter <strong>info@shaddyreinigungservice.com</strong> innerhalb von 24 Stunden um Ihren Termin zu bestätigen.',
+    form_success_text: 'Vielen Dank für Ihre Buchungsanfrage. Wir kontaktieren Sie unter <strong>shaddyreinigung@gmail.com</strong> innerhalb von 24 Stunden um Ihren Termin zu bestätigen.',
     form_success_btn: 'Zurück zur Startseite',
-    form_error: 'Es gab ein Problem beim Absenden des Formulars. Bitte kontaktieren Sie uns direkt unter info@shaddyreinigungservice.com',
+    form_error: 'Es gab ein Problem beim Absenden des Formulars. Bitte kontaktieren Sie uns direkt unter shaddyreinigung@gmail.com',
     privacy_consent: 'Ich habe die <a href="datenschutz.html" target="_blank" style="color:var(--accent);text-decoration:underline">Datenschutzerklärung</a> zur Kenntnis genommen. Ich stimme zu, dass meine Angaben zur Kontaktaufnahme und für Rückfragen dauerhaft gespeichert werden.',
-    form_disclaimer: 'Mit dem Absenden wird Ihre Buchungsanfrage direkt an uns gesendet. Wir kontaktieren Sie von <a href="mailto:info@shaddyreinigungservice.com">info@shaddyreinigungservice.com</a> innerhalb von 24 Stunden um Ihren Termin zu bestätigen.',
+    form_disclaimer: 'Mit dem Absenden wird Ihre Buchungsanfrage direkt an uns gesendet. Wir kontaktieren Sie von <a href="mailto:shaddyreinigung@gmail.com">shaddyreinigung@gmail.com</a> innerhalb von 24 Stunden um Ihren Termin zu bestätigen.',
     price_estimate: 'Geschätzter Preis:',
     price_disclaimer: 'Dies ist eine Schätzung. Der endgültige Preis kann variieren.',
 
@@ -490,6 +523,7 @@ const translations = {
     nav_services: 'Services',
     nav_testimonials: 'Testimonials',
     nav_faq: 'FAQ',
+    nav_pricing: 'Pricing',
     nav_ourwork: 'Our Work',
     nav_gallery: 'Gallery',
     nav_booking: 'Book',
@@ -599,7 +633,31 @@ const translations = {
     faq6_q: 'Are you insured?',
     faq6_a: 'Yes, we have comprehensive liability insurance. In the unlikely event of damage, you are fully covered.',
 
+    // Pricing
+    pricing_title: 'Our Pricing',
+    pricing_subtitle: 'Transparent prices for all our cleaning services',
+    pricing_cat_residential: 'Residential',
+    pricing_cat_commercial: 'Commercial & Facilities',
+    pricing_onetime: 'One-Time Cleaning',
+    pricing_deep: 'Deep Cleaning',
+    pricing_biweekly: 'Regular Every 2 Weeks',
+    pricing_weekly: 'Regular Every Week',
+    pricing_glass: 'Glass Cleaning',
+    pricing_steps: 'Staircase Cleaning',
+    pricing_office: 'Office Cleaning',
+    pricing_nursing: 'Nursing & Retirement Homes',
+    pricing_gym: 'Gym & Hall Cleaning',
+    pricing_school: 'School & Kindergarten',
+    pricing_tax_note: 'All prices are net prices, excluding 19% VAT. VAT will be shown separately on the invoice.',
+    pricing_cta: 'Request a Quote',
+
     // Gallery
+    gallery_title: 'See The Difference',
+    gallery_subtitle: 'Real results from our professional cleaning',
+    gallery1_label: 'Spotless Clean',
+    gallery2_label: 'Sparkling Fresh',
+    gallery3_label: 'Perfect Transformation',
+    gallery4_label: 'Good As New',
     // Our Work
     ourwork_title: 'Our Work',
     ourwork_subtitle: 'Real results from our cleaning projects',
@@ -615,7 +673,7 @@ const translations = {
 
     // Booking
     booking_title: 'Book Your Cleaning Now',
-    booking_lead: 'Submit your request and we\'ll reply from <strong>info@shaddyreinigungservice.com</strong> within 24 hours.',
+    booking_lead: 'Submit your request and we\'ll reply from <strong>shaddyreinigung@gmail.com</strong> within 24 hours.',
     form_name: 'Full Name',
     form_email: 'Email',
     form_phone: 'Phone',
@@ -674,11 +732,11 @@ const translations = {
     day_sat: 'Sat',
     day_sun: 'Sun',
     form_success_title: 'Booking Request Received!',
-    form_success_text: 'Thank you for your booking request. We\'ll contact you at <strong>info@shaddyreinigungservice.com</strong> within 24 hours to confirm your appointment.',
+    form_success_text: 'Thank you for your booking request. We\'ll contact you at <strong>shaddyreinigung@gmail.com</strong> within 24 hours to confirm your appointment.',
     form_success_btn: 'Back to Home',
-    form_error: 'There was a problem submitting your form. Please email us directly at info@shaddyreinigungservice.com',
+    form_error: 'There was a problem submitting your form. Please email us directly at shaddyreinigung@gmail.com',
     privacy_consent: 'I have read the <a href="datenschutz.html" target="_blank" style="color:var(--accent);text-decoration:underline">Privacy Policy</a>. I agree that my details will be stored permanently for contact purposes and follow-up questions.',
-    form_disclaimer: 'By submitting, your booking request will be sent to us directly. We\'ll contact you from <a href="mailto:info@shaddyreinigungservice.com">info@shaddyreinigungservice.com</a> within 24 hours to confirm your appointment.',
+    form_disclaimer: 'By submitting, your booking request will be sent to us directly. We\'ll contact you from <a href="mailto:shaddyreinigung@gmail.com">shaddyreinigung@gmail.com</a> within 24 hours to confirm your appointment.',
     price_estimate: 'Estimated Price:',
     price_disclaimer: 'This is an estimate. The final price may vary.',
 
@@ -782,4 +840,49 @@ if (frequencySelect && recurringDays) {
 
 // Theme toggle (kept for compatibility)
 const themeToggle = document.getElementById('themeToggle');
+const themeIcon = document.getElementById('themeIcon');
+
+// Check for saved theme preference or default to 'dark' (original beautiful theme)
+const savedTheme = localStorage.getItem('theme') || 'dark';
+
+// Apply saved theme on page load
+function applyTheme(theme) {
+  if (theme === 'light') {
+    document.documentElement.setAttribute('data-theme', 'light');
+    themeIcon.textContent = '☀️';
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+    themeIcon.textContent = '🌙';
+  }
+}
+
+// Initialize theme
+applyTheme(savedTheme);
+
+// Toggle theme when button is clicked
+themeToggle.addEventListener('click', () => {
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+  applyTheme(newTheme);
+  localStorage.setItem('theme', newTheme);
+});
+
+// Resolve Imgur album URLs to direct image URLs
+document.querySelectorAll('img[data-imgur-album]').forEach(img => {
+  const albumHash = img.dataset.imgurAlbum;
+  fetch(`https://api.imgur.com/3/album/${albumHash}`, {
+    headers: { Authorization: 'Client-ID 546c25a59c58ad7' }
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.data && data.data.images && data.data.images.length > 0) {
+        img.src = data.data.images[0].link;
+      }
+    })
+    .catch(() => {
+      // Fallback: try direct image URL with album hash
+      img.src = `https://i.imgur.com/${albumHash}.jpeg`;
+    });
+});
 if (themeToggle) themeToggle.style.display = 'none';
