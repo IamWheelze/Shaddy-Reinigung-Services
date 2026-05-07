@@ -22,6 +22,7 @@ body{
   scroll-behavior:smooth;
   line-height:1.7;
   -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
 }
 
 .section{padding:80px 20px}
@@ -144,18 +145,33 @@ body{
 }
 .hamburger span{display:block;height:2px;background:#fff;margin:5px 8px}
 
+.mobile-book-link{display:none}
+
 @media(max-width:860px){
-  .nav-right{flex-direction:column;align-items:flex-end}
+  .nav-right{display:flex;flex-direction:row;align-items:center;gap:6px}
   .nav-links{
     display:none;flex-direction:column;gap:2px;
     position:absolute;top:64px;right:0;left:0;
     padding:8px 16px 16px;
     background:var(--bg-dark);
     border-bottom:1px solid rgba(255,255,255,.1);
+    z-index:60;
   }
   .nav-links.open{display:flex}
   .nav-links a{padding:12px 16px;width:100%;border-radius:0}
+  .mobile-book-link{
+    display:block;
+    background:var(--accent);color:#fff;
+    text-align:center;padding:12px 16px;
+    border-radius:6px;font-weight:700;font-size:.9rem;
+    margin-top:6px;
+  }
+  .book-btn{display:none}
   .hamburger{display:inline-block}
+}
+@media(max-width:480px){
+  .brand-name{font-size:1rem}
+  .lang-btn{padding:5px 8px;font-size:.7rem}
 }
 
 /* === HERO === */
@@ -292,6 +308,7 @@ body{
 
 @media(hover:none){
   .service-list,.service-meta{opacity:1;transform:none}
+  .gallery-label{transform:none}
 }
 
 /* === BUSINESS INFO === */
@@ -567,6 +584,16 @@ footer a:hover{color:#fff}
   cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;
 }
 .upload-preview .remove-btn:hover{background:#EF4444}
+
+/* === MOBILE === */
+@media(max-width:600px){
+  .section{padding:48px 16px}
+  .slide-cta{padding:14px 32px;font-size:.9rem}
+  .hero-slideshow{min-height:85vh}
+  .hero-scroll-hint{bottom:60px}
+  .estimate-container #price-estimate{font-size:2rem}
+  .section-sub{margin-bottom:28px}
+}
 
 /* === DESKTOP === */
 @media(min-width:1024px){
