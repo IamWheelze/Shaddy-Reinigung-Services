@@ -256,9 +256,9 @@ body{
 
 /* === SERVICES === */
 #services{background:var(--bg-alt)}
-#services .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-@media(max-width:900px){#services .grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:600px){#services .grid{grid-template-columns:1fr}}
+#services .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:900px){#services .grid{grid-template-columns:repeat(2,1fr);gap:12px}}
+@media(max-width:600px){#services .grid{grid-template-columns:1fr;gap:12px;max-width:400px;margin:0 auto}}
 
 .service-card{
   position:relative;overflow:hidden;
@@ -308,6 +308,8 @@ body{
 
 @media(hover:none){
   .service-list,.service-meta{opacity:1;transform:none}
+  .service-img{filter:brightness(.7)}
+  .service-pad{background:linear-gradient(to top,rgba(28,25,23,.85) 25%,rgba(28,25,23,.35) 60%,transparent 90%)}
   .gallery-label{transform:none}
 }
 
@@ -366,10 +368,10 @@ body{
 #our-work .section-sub{color:rgba(255,255,255,.6)}
 .work-grid{
   display:grid;grid-template-columns:repeat(3,1fr);
-  gap:12px;margin-top:40px;
+  gap:10px;margin-top:32px;
 }
-@media(max-width:800px){.work-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:480px){.work-grid{grid-template-columns:1fr}}
+@media(max-width:800px){.work-grid{grid-template-columns:repeat(2,1fr);gap:8px}}
+@media(max-width:480px){.work-grid{grid-template-columns:repeat(2,1fr);gap:6px}}
 .work-item{
   border-radius:var(--radius);overflow:hidden;
   aspect-ratio:1;
@@ -396,8 +398,8 @@ body{
   display:grid;grid-template-columns:repeat(3,1fr);
   gap:8px;margin-top:32px;
 }
-@media(max-width:700px){.gallery-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:480px){.gallery-grid{grid-template-columns:1fr}}
+@media(max-width:700px){.gallery-grid{grid-template-columns:repeat(2,1fr);gap:6px}}
+@media(max-width:480px){.gallery-grid{grid-template-columns:repeat(2,1fr);gap:6px}}
 .gallery-item{
   position:relative;border-radius:var(--radius);
   overflow:hidden;aspect-ratio:1;
@@ -427,7 +429,7 @@ body{
   text-align:center;margin-bottom:8px;
   font-family:var(--font-fancy);font-weight:400;
 }
-.booking-container p.lead{text-align:center;margin-top:0;color:rgba(255,255,255,.6)}
+.booking-container p.lead{text-align:center;margin:0 auto 24px;color:rgba(255,255,255,.6);font-size:.95rem;max-width:560px}
 
 form{display:grid;gap:16px}
 .form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
@@ -468,6 +470,15 @@ button[type=submit]{
 button[type=submit]:hover{background:var(--accent-hover);transform:scale(1.02)}
 @media(max-width:720px){button[type=submit]{max-width:100%}}
 
+.privacy-row{margin:20px 0}
+.privacy-label{
+  display:flex;align-items:flex-start;gap:10px;
+  font-weight:400;cursor:pointer;font-size:.9rem;line-height:1.6;
+}
+.privacy-label input[type="checkbox"]{width:auto;margin-top:4px;cursor:pointer;flex-shrink:0}
+.privacy-label span{flex:1}
+.required-star{color:#ff6b6b;margin-left:4px}
+
 .small{text-align:center;color:rgba(255,255,255,.5);font-size:.85rem;line-height:1.6}
 .small a{color:var(--accent-hover)}
 
@@ -475,14 +486,14 @@ button[type=submit]:hover{background:var(--accent-hover);transform:scale(1.02)}
   background:rgba(255,255,255,.06);
   border:1px solid rgba(255,255,255,.12);
   border-radius:var(--radius);
-  padding:24px;margin:16px 0;text-align:center;
+  padding:20px;margin:16px 0;text-align:center;
 }
 .estimate-container h3{
   margin:0 0 4px;color:var(--accent-hover);
-  font-family:var(--font-fancy);font-size:1.1rem;font-weight:400;
+  font-family:var(--font-fancy);font-size:1rem;font-weight:400;
 }
 .estimate-container #price-estimate{
-  font-size:2.8rem;font-weight:700;color:#fff;margin:8px 0;
+  font-size:2.2rem;font-weight:700;color:#fff;margin:6px 0;
 }
 .estimate-container small{color:rgba(255,255,255,.5);font-size:.8rem}
 
@@ -503,20 +514,27 @@ button[type=submit]:hover{background:var(--accent-hover);transform:scale(1.02)}
 
 /* === WHATSAPP === */
 .whatsapp-btn{
-  display:inline-flex;align-items:center;gap:8px;
+  display:inline-flex;align-items:center;gap:6px;
   background:#25D366;color:#fff;text-decoration:none;
-  padding:12px 24px;border-radius:50px;font-weight:600;transition:.2s;
+  padding:10px 20px;border-radius:50px;font-weight:600;
+  font-size:.85rem;transition:.2s;
 }
 .whatsapp-btn:hover{background:#1da851;transform:scale(1.02)}
-.whatsapp-icon{width:20px;height:20px;fill:currentColor}
+.whatsapp-icon{width:16px;height:16px;fill:currentColor}
 
 /* === CONTACT === */
 #contact{background:var(--bg-alt)}
 #contact .wrap{text-align:center}
-#contact p{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:16px}
+#contact .contact-info{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
+  gap:24px;margin:16px 0 28px;font-size:.95rem;
+}
+#contact .contact-info span{display:inline-flex;align-items:center;gap:6px}
 #contact a{color:var(--accent);transition:.2s}
 #contact a:hover{color:var(--accent-hover)}
-@media(max-width:720px){#contact p{flex-direction:column;gap:12px}}
+@media(max-width:720px){
+  #contact .contact-info{flex-direction:column;gap:12px;font-size:.9rem}
+}
 
 /* === LEGAL === */
 .legal-page{padding:80px 16px;min-height:100vh}
@@ -588,11 +606,39 @@ footer a:hover{color:#fff}
 /* === MOBILE === */
 @media(max-width:600px){
   .section{padding:48px 16px}
-  .slide-cta{padding:14px 32px;font-size:.9rem}
+  .slide-cta{padding:12px 28px;font-size:.85rem}
+  .slide-title{font-size:clamp(2rem,8vw,2.8rem);margin-bottom:14px}
+  .slide-sub{font-size:clamp(.85rem,2.5vw,1rem);margin-bottom:24px}
   .hero-slideshow{min-height:85vh}
   .hero-scroll-hint{bottom:60px}
-  .estimate-container #price-estimate{font-size:2rem}
-  .section-sub{margin-bottom:28px}
+  .hero-controls{bottom:18px}
+  .hero-prev,.hero-next{width:32px;height:32px;font-size:15px}
+  .hero-dots button{width:6px;height:6px}
+  .estimate-container #price-estimate{font-size:1.6rem}
+  .estimate-container{padding:16px}
+  .section-title{font-size:clamp(1.4rem,5vw,1.8rem)}
+  .section-sub{margin-bottom:24px;font-size:.85rem}
+  .info-card{padding:24px 16px}
+  .info-icon{font-size:1.6rem}
+  .faq-question{font-size:.88rem;padding:16px 0}
+  .faq-answer{font-size:.84rem}
+  .whatsapp-btn{padding:8px 16px;font-size:.8rem}
+  .whatsapp-icon{width:14px;height:14px}
+  footer{padding:20px 16px;font-size:.8rem}
+  footer p{margin:4px 0}
+  .upload-area{padding:20px 14px}
+  .upload-icon{font-size:1.4rem}
+  .upload-text{font-size:.8rem}
+  .upload-hint{font-size:.7rem}
+  .booking-container p.lead{font-size:.85rem}
+  .checkbox-row{gap:8px}
+  .checkbox-row label{font-size:.8rem}
+  label{font-size:.8rem}
+  input,select,textarea{font-size:.85rem;padding:10px 12px}
+  button[type=submit]{padding:12px 20px;font-size:.9rem}
+  .privacy-label{font-size:.82rem;gap:8px}
+  .small{font-size:.78rem}
+  .contact-info{margin:12px 0 20px}
 }
 
 /* === DESKTOP === */
