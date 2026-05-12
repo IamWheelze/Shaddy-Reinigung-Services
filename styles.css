@@ -307,131 +307,63 @@ body{
 .service-btn:hover{background:var(--accent-hover)}
 
 /* PRICING */
-#pricing{background:rgba(4,9,17,.4)}
-[data-theme="light"] #pricing{background:#fff}
-
+#pricing{background:var(--bg)}
 .pricing-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
-  gap:28px;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:20px;
 }
+@media(max-width:600px){.pricing-grid{grid-template-columns:1fr}}
 
 .pricing-category{
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:18px;
+  background:var(--bg-alt);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
   overflow:hidden;
-  box-shadow:0 0 18px rgba(0,180,255,.12);
 }
-[data-theme="light"] .pricing-category{
-  background:#fff;
-  border-color:#E5E7EB;
-  box-shadow:0 2px 4px rgba(0,0,0,.1);
-}
-
 .pricing-category-header{
-  display:flex;
-  align-items:center;
-  gap:14px;
-  padding:22px 24px 16px;
-  border-bottom:1px solid rgba(255,255,255,.06);
+  display:flex;align-items:center;gap:12px;
+  padding:20px 22px 14px;
+  border-bottom:1px solid var(--border);
 }
-[data-theme="light"] .pricing-category-header{
-  border-bottom-color:#F3F4F6;
-}
-.pricing-category-icon{font-size:2rem}
+.pricing-category-icon{font-size:1.6rem}
 .pricing-category-header h3{
-  margin:0;
-  font-size:1.25rem;
-  font-family:var(--font-fancy);
-  color:#fff;
+  margin:0;font-size:1.1rem;
+  font-family:var(--font-fancy);font-weight:400;
+  color:var(--text);
 }
-[data-theme="light"] .pricing-category-header h3{color:#1F2937}
-
-.pricing-items{padding:8px 0}
-
+.pricing-items{padding:4px 0}
 .pricing-row{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:14px 24px;
-  transition:background .2s;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 22px;transition:background .2s;
 }
-.pricing-row:hover{background:rgba(0,191,255,.06)}
-[data-theme="light"] .pricing-row:hover{background:#F9FAFB}
-
-.pricing-row + .pricing-row{
-  border-top:1px solid rgba(255,255,255,.04);
-}
-[data-theme="light"] .pricing-row + .pricing-row{
-  border-top-color:#F3F4F6;
-}
-
-.pricing-service{
-  font-weight:500;
-  color:#e9f6ff;
-  font-size:1rem;
-}
-[data-theme="light"] .pricing-service{color:#4B5563}
-
+.pricing-row:hover{background:var(--accent-light)}
+.pricing-row + .pricing-row{border-top:1px solid var(--border)}
+.pricing-service{font-weight:500;color:var(--text);font-size:.9rem}
 .pricing-price{
-  font-weight:700;
-  font-size:1.3rem;
-  color:var(--accent);
-  white-space:nowrap;
+  font-weight:700;font-size:1.15rem;
+  color:var(--accent);white-space:nowrap;
 }
-.pricing-price small{
-  font-size:.75rem;
-  font-weight:500;
-  opacity:.7;
-  margin-left:2px;
-}
+.pricing-price small{font-size:.7rem;font-weight:500;opacity:.7;margin-left:2px}
 
 .pricing-tax-note{
-  text-align:center;
-  margin-top:32px;
-  padding:24px;
-  background:rgba(255,191,36,.08);
-  border:1px solid rgba(255,191,36,.2);
-  border-radius:14px;
+  text-align:center;margin-top:28px;
+  padding:20px;
+  background:var(--accent-light);
+  border:1px solid var(--accent);
+  border-radius:var(--radius);
 }
-[data-theme="light"] .pricing-tax-note{
-  background:#FFFBEB;
-  border-color:#FDE68A;
-}
-.pricing-tax-note p{
-  margin:0 0 16px;
-  color:#fbbf24;
-  font-weight:500;
-}
-[data-theme="light"] .pricing-tax-note p{color:#92400E}
-
+.pricing-tax-note p{margin:0 0 14px;color:var(--text);font-weight:500;font-size:.9rem}
 .pricing-cta{
   display:inline-block;
-  background:linear-gradient(135deg,#00bfff,#0080ff);
-  color:#fff;
+  background:var(--accent);color:#fff;
   text-decoration:none;
-  padding:14px 36px;
-  border-radius:14px;
-  font-weight:700;
-  font-size:1.1rem;
-  box-shadow:0 0 16px rgba(0,180,255,.5);
-  transition:.25s;
+  padding:12px 28px;border-radius:50px;
+  font-weight:700;font-size:.9rem;
+  transition:.2s;
 }
-.pricing-cta:hover{
-  transform:scale(1.05);
-  box-shadow:0 0 28px rgba(0,180,255,.8);
-}
-[data-theme="light"] .pricing-cta{
-  background:linear-gradient(135deg,var(--accent),var(--accent-2));
-  box-shadow:0 4px 6px rgba(0,102,204,.3);
-}
+.pricing-cta:hover{background:var(--accent-hover);transform:scale(1.03)}
 
-/* BOOKING */
-#booking{
-  background:rgba(8,14,26,.8);
-  border-radius:16px;
-  box-shadow:0 0 25px rgba(0,180,255,.25);
 @media(hover:none){
   .service-list,.service-meta{opacity:1;transform:none}
   .service-img{filter:brightness(.7)}
@@ -640,26 +572,27 @@ button[type=submit]:hover{background:var(--accent-hover);transform:scale(1.02)}
 
 /* === WHATSAPP === */
 .whatsapp-btn{
-  display:inline-flex;align-items:center;gap:6px;
+  display:inline-flex;align-items:center;gap:8px;
   background:#25D366;color:#fff;text-decoration:none;
-  padding:10px 20px;border-radius:50px;font-weight:600;
-  font-size:.85rem;transition:.2s;
+  padding:11px 22px;border-radius:50px;font-weight:600;
+  font-size:.88rem;transition:.25s;
+  box-shadow:0 2px 8px rgba(37,211,102,.25);
 }
-.whatsapp-btn:hover{background:#1da851;transform:scale(1.02)}
-.whatsapp-icon{width:16px;height:16px;fill:currentColor}
+.whatsapp-btn:hover{background:#1ebe5d;transform:translateY(-2px);box-shadow:0 4px 14px rgba(37,211,102,.35)}
+.whatsapp-icon{width:18px;height:18px;fill:currentColor;flex-shrink:0}
 
 /* === CONTACT === */
 #contact{background:var(--bg-alt)}
-#contact .wrap{text-align:center}
+#contact .wrap{text-align:center;max-width:600px}
 #contact .contact-info{
   display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
-  gap:24px;margin:16px 0 28px;font-size:.95rem;
+  gap:24px;margin:20px 0 32px;font-size:.95rem;
 }
 #contact .contact-info span{display:inline-flex;align-items:center;gap:6px}
-#contact a{color:var(--accent);transition:.2s}
+#contact a{color:var(--accent);font-weight:500;transition:.2s}
 #contact a:hover{color:var(--accent-hover)}
 @media(max-width:720px){
-  #contact .contact-info{flex-direction:column;gap:12px;font-size:.9rem}
+  #contact .contact-info{flex-direction:column;gap:14px;font-size:.9rem}
 }
 
 /* === LEGAL === */
@@ -748,8 +681,8 @@ footer a:hover{color:#fff}
   .info-icon{font-size:1.6rem}
   .faq-question{font-size:.88rem;padding:16px 0}
   .faq-answer{font-size:.84rem}
-  .whatsapp-btn{padding:8px 16px;font-size:.8rem}
-  .whatsapp-icon{width:14px;height:14px}
+  .whatsapp-btn{padding:9px 18px;font-size:.82rem}
+  .whatsapp-icon{width:15px;height:15px}
   footer{padding:20px 16px;font-size:.8rem}
   footer p{margin:4px 0}
   .upload-area{padding:20px 14px}
