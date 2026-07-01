@@ -607,7 +607,7 @@ button[type=submit]:hover{background:var(--accent-hover);transform:scale(1.02)}
 .legal-page a:hover{color:var(--accent-hover)}
 
 /* === TESTIMONIALS === */
-.testimonials{background:var(--bg-alt);padding:60px 16px}
+#testimonials{background:var(--bg-alt)}
 .testimonial-grid{
   display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
   gap:16px;margin-top:32px;
@@ -615,14 +615,20 @@ button[type=submit]:hover{background:var(--accent-hover);transform:scale(1.02)}
 .testimonial-card{
   background:var(--bg-alt);border:1px solid var(--border);
   border-radius:var(--radius);padding:24px;position:relative;
+  transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s;
 }
+.testimonial-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.08)}
 .testimonial-card::before{
   content:"\201C";position:absolute;top:8px;left:18px;
   font-size:3rem;color:var(--accent);opacity:.15;font-family:serif;
 }
 .testimonial-text{margin:14px 0;line-height:1.7;color:var(--text-light);font-style:italic}
 .testimonial-author{display:flex;align-items:center;gap:10px;margin-top:14px}
-.testimonial-avatar{width:40px;height:40px;border-radius:50%;background:var(--accent)}
+.testimonial-avatar{
+  width:40px;height:40px;border-radius:50%;background:var(--accent);
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-weight:700;font-size:.85rem;flex-shrink:0;
+}
 .testimonial-name{font-weight:700;font-size:.95rem;color:var(--text)}
 .testimonial-service{font-size:.8rem;color:var(--text-light)}
 .rating{color:#F59E0B;font-size:1rem;margin-bottom:4px}
