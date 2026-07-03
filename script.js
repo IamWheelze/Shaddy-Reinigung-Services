@@ -15,30 +15,6 @@ navLinks.querySelectorAll('a').forEach(link => {
   });
 });
 
-// Slides
-const slides=[
-  {image:"https://images.pexels.com/photos/4099264/pexels-photo-4099264.jpeg",title:"Sparkling Homes. Happy Clients.",sub:"Premium house & apartment cleaning with trusted professionals."},
-  {image:"https://images.pexels.com/photos/4176302/pexels-photo-4176302.jpeg",title:"Office Cleaning You Can Count On.",sub:"Quiet, efficient, after-hours service to keep workspaces pristine."},
-  {image:"https://images.pexels.com/photos/4097996/pexels-photo-4097996.jpeg",title:"Windows & Deep Cleaning Experts.",sub:"Streak-free glass and thorough deep cleans — top to bottom."}
-];
-let i=0,timer;const hero=document.querySelector('.hero-slideshow'),bgs=hero.querySelectorAll('.slide-bg'),titleEl=hero.querySelector('.slide-title'),subEl=hero.querySelector('.slide-sub'),dots=document.querySelector('.hero-dots');
-slides.forEach((_,n)=>{const d=document.createElement('button');d.setAttribute('aria-label', `Go to slide ${n+1}`);d.addEventListener('click',()=>go(n));dots.appendChild(d)});
-function show(n){
-  i=(n+slides.length)%slides.length;
-  bgs.forEach((b,j)=>{b.style.backgroundImage=`url("${slides[j].image}")`;b.classList.toggle('is-active',j===i)});
-  titleEl.style.animation='none';subEl.style.animation='none';
-  titleEl.offsetHeight;
-  titleEl.style.animation='heroFadeUp .8s cubic-bezier(.16,1,.3,1) both';
-  subEl.style.animation='heroFadeUp .8s cubic-bezier(.16,1,.3,1) .15s both';
-  titleEl.textContent=slides[i].title;subEl.textContent=slides[i].sub;
-  [...dots.children].forEach((d,j)=>d.setAttribute('aria-selected',j===i));
-}
-function go(n){show(n);start()}
-function next(){show(i+1)}function prev(){show(i-1)}function start(){stop();timer=setInterval(next,5000)}function stop(){clearInterval(timer)}
-show(0);start();
-document.querySelector('.hero-next').onclick=()=>{next();start()};document.querySelector('.hero-prev').onclick=()=>{prev();start()};
-hero.onmouseenter=stop;hero.onmouseleave=start;
-
 // Advanced scroll animation system
 (function(){
   // Assign animation classes based on section context
@@ -302,12 +278,13 @@ const translations = {
     book_btn: 'Jetzt Buchen',
 
     // Hero
-    hero_title1: 'Strahlende Häuser. Glückliche Kunden.',
-    hero_sub1: 'Premium Haus- und Wohnungsreinigung mit vertrauenswürdigen Profis.',
-    hero_title2: 'Büroreinigung, auf die Sie zählen können.',
-    hero_sub2: 'Ruhig, effizient, nach Feierabend - für makellose Arbeitsbereiche.',
-    hero_title3: 'Experten für Fenster & Tiefenreinigung.',
-    hero_sub3: 'Streifenfreies Glas und gründliche Tiefenreinigung - von oben bis unten.',
+    hero_eyebrow: 'Reinigungsservice in Karlsruhe',
+    hero_title: 'Makellos sauber.<br>Jedes Mal.',
+    hero_sub: 'Professionelle Reinigung für Zuhause und Gewerbe — versichert, gründlich, zuverlässig. Wir antworten innerhalb von 24 Stunden.',
+    hero_whatsapp: 'WhatsApp',
+    trust_insured: 'Vollständig versichert',
+    trust_clients: '200+ zufriedene Kunden',
+    trust_response: 'Antwort in 24 Std.',
 
     // Services
     services_title: 'Unsere Reinigungsleistungen',
@@ -506,7 +483,7 @@ const translations = {
     form_success_text: 'Vielen Dank für Ihre Buchungsanfrage. Wir kontaktieren Sie unter <strong>shaddyreinigung@gmail.com</strong> innerhalb von 24 Stunden um Ihren Termin zu bestätigen.',
     form_success_btn: 'Zurück zur Startseite',
     form_error: 'Es gab ein Problem beim Absenden des Formulars. Bitte kontaktieren Sie uns direkt unter shaddyreinigung@gmail.com',
-    privacy_consent: 'Ich habe die <a href="datenschutz.html" target="_blank" style="color:var(--accent);text-decoration:underline">Datenschutzerklärung</a> zur Kenntnis genommen. Ich stimme zu, dass meine Angaben zur Kontaktaufnahme und für Rückfragen dauerhaft gespeichert werden.',
+    privacy_consent: 'Ich habe die <a href="datenschutz.html" target="_blank">Datenschutzerklärung</a> zur Kenntnis genommen. Ich stimme zu, dass meine Angaben zur Kontaktaufnahme und für Rückfragen dauerhaft gespeichert werden.',
     form_disclaimer: 'Mit dem Absenden wird Ihre Buchungsanfrage direkt an uns gesendet. Wir kontaktieren Sie von <a href="mailto:shaddyreinigung@gmail.com">shaddyreinigung@gmail.com</a> innerhalb von 24 Stunden um Ihren Termin zu bestätigen.',
     price_estimate: 'Geschätzter Preis:',
     price_disclaimer: 'Dies ist eine Schätzung. Der endgültige Preis kann variieren.',
@@ -531,12 +508,13 @@ const translations = {
     book_btn: 'Book Now',
 
     // Hero
-    hero_title1: 'Sparkling Homes. Happy Clients.',
-    hero_sub1: 'Premium house & apartment cleaning with trusted professionals.',
-    hero_title2: 'Office Cleaning You Can Count On.',
-    hero_sub2: 'Quiet, efficient, after-hours service to keep workspaces pristine.',
-    hero_title3: 'Windows & Deep Cleaning Experts.',
-    hero_sub3: 'Streak-free glass and thorough deep cleans — top to bottom.',
+    hero_eyebrow: 'Cleaning service in Karlsruhe',
+    hero_title: 'Spotless clean.<br>Every time.',
+    hero_sub: 'Professional cleaning for homes and businesses — insured, thorough, reliable. We reply within 24 hours.',
+    hero_whatsapp: 'WhatsApp',
+    trust_insured: 'Fully insured',
+    trust_clients: '200+ happy clients',
+    trust_response: 'Reply within 24h',
 
     // Services
     services_title: 'Our Cleaning Services',
@@ -735,7 +713,7 @@ const translations = {
     form_success_text: 'Thank you for your booking request. We\'ll contact you at <strong>shaddyreinigung@gmail.com</strong> within 24 hours to confirm your appointment.',
     form_success_btn: 'Back to Home',
     form_error: 'There was a problem submitting your form. Please email us directly at shaddyreinigung@gmail.com',
-    privacy_consent: 'I have read the <a href="datenschutz.html" target="_blank" style="color:var(--accent);text-decoration:underline">Privacy Policy</a>. I agree that my details will be stored permanently for contact purposes and follow-up questions.',
+    privacy_consent: 'I have read the <a href="datenschutz.html" target="_blank">Privacy Policy</a>. I agree that my details will be stored permanently for contact purposes and follow-up questions.',
     form_disclaimer: 'By submitting, your booking request will be sent to us directly. We\'ll contact you from <a href="mailto:shaddyreinigung@gmail.com">shaddyreinigung@gmail.com</a> within 24 hours to confirm your appointment.',
     price_estimate: 'Estimated Price:',
     price_disclaimer: 'This is an estimate. The final price may vary.',
@@ -779,27 +757,8 @@ function switchLanguage(lang) {
     }
   });
 
-  // Update hero slideshow with new language
-  updateHeroSlides(lang);
-
   // Update HTML lang attribute
   document.documentElement.lang = lang;
-}
-
-// Update hero slideshow texts
-function updateHeroSlides(lang) {
-  const newSlides = [
-    {image: slides[0].image, title: translations[lang].hero_title1, sub: translations[lang].hero_sub1},
-    {image: slides[1].image, title: translations[lang].hero_title2, sub: translations[lang].hero_sub2},
-    {image: slides[2].image, title: translations[lang].hero_title3, sub: translations[lang].hero_sub3}
-  ];
-
-  // Update the global slides array
-  slides.splice(0, slides.length, ...newSlides);
-
-  // Update current slide display
-  titleEl.textContent = slides[i].title;
-  subEl.textContent = slides[i].sub;
 }
 
 // Initialize language from localStorage or default to German
