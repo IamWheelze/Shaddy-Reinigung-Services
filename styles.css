@@ -66,13 +66,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 }
 .reveal.in-view{opacity:1;transform:none}
 
-.reveal-left{opacity:0;transform:translateX(-40px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
-.reveal-left.in-view{opacity:1;transform:none}
+/* Kept as aliases (JS assigns these class names) but animate as a clean
+   vertical fade — horizontal slide-ins caused off-screen overflow. */
+.reveal-left,.reveal-right{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal-left.in-view,.reveal-right.in-view{opacity:1;transform:none}
 
-.reveal-right{opacity:0;transform:translateX(40px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
-.reveal-right.in-view{opacity:1;transform:none}
-
-.reveal-scale{opacity:0;transform:scale(.92);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal-scale{opacity:0;transform:scale(.94);transition:opacity .7s var(--ease),transform .7s var(--ease)}
 .reveal-scale.in-view{opacity:1;transform:none}
 
 .reveal-clip{clip-path:inset(0 100% 0 0);transition:clip-path .9s var(--ease)}
