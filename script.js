@@ -3,6 +3,18 @@
 // content still shows by default.
 document.documentElement.classList.add('js');
 
+// Image fallback: if a photo can't load (e.g. blocked hotlink), mark it so
+// CSS fades it out and the designed gradient behind it shows instead of a
+// broken-image icon. Every card/hero still looks intentional without photos.
+function markImg(img){
+  if (img.complete && img.naturalWidth === 0) img.classList.add('img-failed');
+  img.addEventListener('error', () => img.classList.add('img-failed'));
+  img.addEventListener('load', () => {
+    if (img.naturalWidth === 0) img.classList.add('img-failed');
+  });
+}
+document.querySelectorAll('img').forEach(markImg);
+
 // Failsafe: if the scroll observer hasn't revealed everything within a few
 // seconds (slow device, observer glitch), force everything visible so no
 // image is ever stuck invisible.
