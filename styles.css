@@ -339,7 +339,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
   .service-list{max-height:120px;opacity:1;transform:none;margin:12px 0 12px 2px}
   .service-meta{max-height:60px;opacity:1;transform:none}
   .service-img{filter:brightness(.62)}
-  .gallery-label{transform:none}
 }
 
 /* === BUSINESS INFO === */
@@ -538,43 +537,6 @@ button[type=submit]:disabled{opacity:.6;cursor:default;transform:none}
   color:var(--text-light);line-height:1.7;font-size:.9rem;
 }
 .faq-item.active .faq-answer{max-height:500px;padding-bottom:20px}
-
-/* === GALLERY — auto-scrolling marquee (continuous horizontal motion) === */
-#gallery{background:var(--bg);overflow:hidden}
-.gallery-marquee{
-  margin-top:8px;
-  -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
-  mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
-}
-.gallery-track{
-  display:flex;gap:14px;width:max-content;
-  animation:marquee 40s linear infinite;
-}
-.gallery-marquee:hover .gallery-track{animation-play-state:paused}
-@keyframes marquee{
-  from{transform:translateX(0)}
-  to{transform:translateX(-50%)}
-}
-.gallery-item{
-  position:relative;flex:0 0 auto;
-  width:clamp(240px,32vw,340px);aspect-ratio:4/3;
-  border-radius:var(--radius);overflow:hidden;
-}
-.gallery-item img{
-  width:100%;height:100%;object-fit:cover;display:block;
-  transition:transform .6s var(--ease),filter .3s;
-}
-.gallery-item:hover img{transform:scale(1.06);filter:brightness(.75)}
-.gallery-label{
-  position:absolute;left:14px;bottom:12px;
-  padding:6px 14px;border-radius:50px;
-  background:rgba(20,17,15,.7);backdrop-filter:blur(6px);
-  color:#fff;font-weight:600;font-size:.75rem;
-}
-@media(max-width:480px){.gallery-item{width:clamp(200px,72vw,260px)}}
-@media(prefers-reduced-motion:reduce){
-  .gallery-track{animation:none;overflow-x:auto;padding-bottom:8px}
-}
 
 /* === WHATSAPP === */
 .whatsapp-btn{

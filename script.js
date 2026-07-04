@@ -211,7 +211,6 @@ const translations = {
     nav_services: 'Leistungen',
     nav_faq: 'FAQ',
     nav_pricing: 'Preise',
-    nav_gallery: 'Galerie',
     nav_booking: 'Buchen',
     nav_contact: 'Kontakt',
     book_btn: 'Jetzt Buchen',
@@ -330,22 +329,8 @@ const translations = {
     pricing_cta: 'Jetzt Angebot Anfragen',
 
     // Gallery
-    gallery_title: 'Sehen Sie den Unterschied',
-    gallery_subtitle: 'Echte Ergebnisse unserer professionellen Reinigung',
-    gallery1_label: 'Makellose Sauberkeit',
-    gallery2_label: 'Strahlend Rein',
-    gallery3_label: 'Perfekte Verwandlung',
-    gallery4_label: 'Wie Neu',
     // Our Work
 
-    gallery_title: 'Galerie',
-    gallery_subtitle: 'Eindrücke unserer professionellen Reinigung',
-    gallery1_label: 'Küchenreinigung',
-    gallery2_label: 'Badezimmer',
-    gallery3_label: 'Bodenreinigung',
-    gallery4_label: 'Fensterreinigung',
-    gallery5_label: 'Desinfektion',
-    gallery6_label: 'Ergebnis',
 
     // Booking
     booking_title: 'Buchen Sie Jetzt Ihre Reinigung',
@@ -425,7 +410,6 @@ const translations = {
     nav_services: 'Services',
     nav_faq: 'FAQ',
     nav_pricing: 'Pricing',
-    nav_gallery: 'Gallery',
     nav_booking: 'Book',
     nav_contact: 'Contact',
     book_btn: 'Book Now',
@@ -544,22 +528,8 @@ const translations = {
     pricing_cta: 'Request a Quote',
 
     // Gallery
-    gallery_title: 'See The Difference',
-    gallery_subtitle: 'Real results from our professional cleaning',
-    gallery1_label: 'Spotless Clean',
-    gallery2_label: 'Sparkling Fresh',
-    gallery3_label: 'Perfect Transformation',
-    gallery4_label: 'Good As New',
     // Our Work
 
-    gallery_title: 'Gallery',
-    gallery_subtitle: 'Impressions of our professional cleaning',
-    gallery1_label: 'Kitchen Cleaning',
-    gallery2_label: 'Bathroom',
-    gallery3_label: 'Floor Cleaning',
-    gallery4_label: 'Window Cleaning',
-    gallery5_label: 'Sanitizing',
-    gallery6_label: 'Result',
 
     // Booking
     booking_title: 'Book Your Cleaning Now',
