@@ -1,3 +1,16 @@
+// Mark that JS is active — images/sections only start hidden (for the
+// scroll animation) when this class is present, so if JS ever fails the
+// content still shows by default.
+document.documentElement.classList.add('js');
+
+// Failsafe: if the scroll observer hasn't revealed everything within a few
+// seconds (slow device, observer glitch), force everything visible so no
+// image is ever stuck invisible.
+setTimeout(() => {
+  document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale,.reveal-clip')
+    .forEach(el => el.classList.add('in-view'));
+}, 2500);
+
 // Navbar toggle
 const hamburger=document.getElementById('hamburger');
 const navLinks=document.getElementById('navLinks');
@@ -194,70 +207,6 @@ bookingForm.addEventListener('submit', async function(e) {
     }
 });
 
-// Image Upload
-const uploadArea = document.getElementById('uploadArea');
-const fileInput = document.getElementById('fileInput');
-const uploadPreviews = document.getElementById('uploadPreviews');
-let uploadedFiles = [];
-const MAX_FILES = 5;
-const MAX_SIZE = 10 * 1024 * 1024; // 10MB
-const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
-
-uploadArea.addEventListener('click', () => fileInput.click());
-uploadArea.addEventListener('dragover', (e) => { e.preventDefault(); uploadArea.classList.add('drag-over'); });
-uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('drag-over'));
-uploadArea.addEventListener('drop', (e) => {
-  e.preventDefault();
-  uploadArea.classList.remove('drag-over');
-  handleFiles(e.dataTransfer.files);
-});
-fileInput.addEventListener('change', () => { handleFiles(fileInput.files); fileInput.value = ''; });
-
-function handleFiles(files) {
-  for (const file of files) {
-    if (uploadedFiles.length >= MAX_FILES) break;
-    if (!ALLOWED_TYPES.includes(file.type)) continue;
-    if (file.size > MAX_SIZE) continue;
-    uploadedFiles.push(file);
-    addPreview(file, uploadedFiles.length - 1);
-  }
-  updateFileInput();
-}
-
-function addPreview(file, index) {
-  const div = document.createElement('div');
-  div.className = 'upload-preview';
-  div.dataset.index = index;
-  const img = document.createElement('img');
-  img.src = URL.createObjectURL(file);
-  img.alt = file.name;
-  const btn = document.createElement('button');
-  btn.type = 'button';
-  btn.className = 'remove-btn';
-  btn.textContent = '\u00D7';
-  btn.addEventListener('click', () => removeFile(index));
-  div.appendChild(img);
-  div.appendChild(btn);
-  uploadPreviews.appendChild(div);
-}
-
-function removeFile(index) {
-  uploadedFiles.splice(index, 1);
-  renderPreviews();
-  updateFileInput();
-}
-
-function renderPreviews() {
-  uploadPreviews.innerHTML = '';
-  uploadedFiles.forEach((file, idx) => addPreview(file, idx));
-}
-
-function updateFileInput() {
-  const dt = new DataTransfer();
-  uploadedFiles.forEach(f => dt.items.add(f));
-  fileInput.files = dt.files;
-}
-
 // Year
 document.getElementById('year').textContent=new Date().getFullYear();
 
@@ -268,7 +217,6 @@ const translations = {
     // Navigation
     nav_home: 'Home',
     nav_services: 'Leistungen',
-    nav_testimonials: 'Bewertungen',
     nav_faq: 'FAQ',
     nav_pricing: 'Preise',
     nav_ourwork: 'Unsere Arbeit',
@@ -356,14 +304,6 @@ const translations = {
     info_payment_text: 'Barzahlung<br>Banküberweisung<br>PayPal<br><em style="font-size:.9rem;color:#a9d9ff">Rechnung für Firmen</em>',
 
     // Testimonials
-    testimonials_title: 'Was Unsere Kunden Sagen',
-    testimonials_subtitle: 'Über 200 zufriedene Kunden in Karlsruhe',
-    testimonial1_text: 'Absolut professioneller Service! Meine Wohnung war nach dem Auszug blitzsauber. Besonders beeindruckt hat mich die Gründlichkeit in Küche und Bad. Sehr empfehlenswert!',
-    testimonial1_service: 'Auszugsreinigung',
-    testimonial2_text: 'Schnell, zuverlässig und gründlich. Die Büroreinigung läuft seit 6 Monaten perfekt. Das Team ist freundlich und flexibel. Preis-Leistung stimmt!',
-    testimonial2_service: 'Büroreinigung',
-    testimonial3_text: 'Ich nutze den Service für meine Airbnb-Wohnung. Immer pünktlich, immer perfekt sauber. Die Kommunikation ist super und die Preise sind fair. Top!',
-    testimonial3_service: 'Airbnb Reinigung',
 
     // FAQ
     faq_title: 'Häufig Gestellte Fragen',
@@ -435,9 +375,6 @@ const translations = {
     form_days: 'Wochentage (für wiederkehrende Reinigung)',
     form_extras: 'Extras',
     form_notes: 'Notizen / Besondere Wünsche',
-    form_photos: 'Fotos hochladen (optional)',
-    upload_text: 'Bilder hierher ziehen oder klicken zum Auswählen',
-    upload_hint: 'Max. 5 Bilder, je max. 10 MB (JPG, PNG, WEBP)',
     form_submit: 'Buchungsanfrage Senden',
     form_sending: 'Wird gesendet...',
     placeholder_name: 'Ihr Name',
@@ -498,7 +435,6 @@ const translations = {
     // Navigation
     nav_home: 'Home',
     nav_services: 'Services',
-    nav_testimonials: 'Testimonials',
     nav_faq: 'FAQ',
     nav_pricing: 'Pricing',
     nav_ourwork: 'Our Work',
@@ -586,14 +522,6 @@ const translations = {
     info_payment_text: 'Cash<br>Bank Transfer<br>PayPal<br><em style="font-size:.9rem;color:#a9d9ff">Invoicing for companies</em>',
 
     // Testimonials
-    testimonials_title: 'What Our Customers Say',
-    testimonials_subtitle: 'Over 200 satisfied customers in Karlsruhe',
-    testimonial1_text: 'Absolutely professional service! My apartment was spotless after the move-out. I was particularly impressed with the thoroughness in the kitchen and bathroom. Highly recommended!',
-    testimonial1_service: 'Move-Out Cleaning',
-    testimonial2_text: 'Fast, reliable and thorough. The office cleaning has been running perfectly for 6 months. The team is friendly and flexible. Great value for money!',
-    testimonial2_service: 'Office Cleaning',
-    testimonial3_text: 'I use the service for my Airbnb apartment. Always punctual, always perfectly clean. Communication is excellent and prices are fair. Top!',
-    testimonial3_service: 'Airbnb Cleaning',
 
     // FAQ
     faq_title: 'Frequently Asked Questions',
@@ -665,9 +593,6 @@ const translations = {
     form_days: 'Weekdays (for recurring cleaning)',
     form_extras: 'Extras',
     form_notes: 'Notes / Special Requests',
-    form_photos: 'Upload Photos (optional)',
-    upload_text: 'Drag images here or click to browse',
-    upload_hint: 'Max. 5 images, max. 10 MB each (JPG, PNG, WEBP)',
     form_submit: 'Submit Booking Request',
     form_sending: 'Sending...',
     placeholder_name: 'Your Name',
@@ -797,51 +722,3 @@ if (frequencySelect && recurringDays) {
   });
 }
 
-// Theme toggle (kept for compatibility)
-const themeToggle = document.getElementById('themeToggle');
-const themeIcon = document.getElementById('themeIcon');
-
-// Check for saved theme preference or default to 'dark' (original beautiful theme)
-const savedTheme = localStorage.getItem('theme') || 'dark';
-
-// Apply saved theme on page load
-function applyTheme(theme) {
-  if (theme === 'light') {
-    document.documentElement.setAttribute('data-theme', 'light');
-    themeIcon.textContent = '☀️';
-  } else {
-    document.documentElement.removeAttribute('data-theme');
-    themeIcon.textContent = '🌙';
-  }
-}
-
-// Initialize theme
-applyTheme(savedTheme);
-
-// Toggle theme when button is clicked
-themeToggle.addEventListener('click', () => {
-  const currentTheme = document.documentElement.getAttribute('data-theme');
-  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-
-  applyTheme(newTheme);
-  localStorage.setItem('theme', newTheme);
-});
-
-// Resolve Imgur album URLs to direct image URLs
-document.querySelectorAll('img[data-imgur-album]').forEach(img => {
-  const albumHash = img.dataset.imgurAlbum;
-  fetch(`https://api.imgur.com/3/album/${albumHash}`, {
-    headers: { Authorization: 'Client-ID 546c25a59c58ad7' }
-  })
-    .then(res => res.json())
-    .then(data => {
-      if (data.data && data.data.images && data.data.images.length > 0) {
-        img.src = data.data.images[0].link;
-      }
-    })
-    .catch(() => {
-      // Fallback: try direct image URL with album hash
-      img.src = `https://i.imgur.com/${albumHash}.jpeg`;
-    });
-});
-if (themeToggle) themeToggle.style.display = 'none';

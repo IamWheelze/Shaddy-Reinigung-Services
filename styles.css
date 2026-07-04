@@ -59,22 +59,22 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .btn-ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(4px)}
 .btn-ghost:hover{background:rgba(255,255,255,.16);transform:translateY(-2px)}
 
-/* === ANIMATION SYSTEM (fade & settle — no bounce, no spin) === */
-.reveal{
-  opacity:0;transform:translateY(28px);
+/* === ANIMATION SYSTEM (fade & settle — no bounce, no spin) ===
+   The hidden start-state only applies when JS is active (html.js). Without
+   JS — or before it runs — content is fully visible, so images never depend
+   on scripts to appear. */
+.reveal,.reveal-left,.reveal-right{
   transition:opacity .7s var(--ease),transform .7s var(--ease);
 }
-.reveal.in-view{opacity:1;transform:none}
+.js .reveal,.js .reveal-left,.js .reveal-right{opacity:0;transform:translateY(28px)}
+.reveal.in-view,.reveal-left.in-view,.reveal-right.in-view{opacity:1;transform:none}
 
-/* Kept as aliases (JS assigns these class names) but animate as a clean
-   vertical fade — horizontal slide-ins caused off-screen overflow. */
-.reveal-left,.reveal-right{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
-.reveal-left.in-view,.reveal-right.in-view{opacity:1;transform:none}
-
-.reveal-scale{opacity:0;transform:scale(.94);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal-scale{transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.js .reveal-scale{opacity:0;transform:scale(.94)}
 .reveal-scale.in-view{opacity:1;transform:none}
 
-.reveal-clip{clip-path:inset(0 100% 0 0);transition:clip-path .9s var(--ease)}
+.reveal-clip{transition:clip-path .9s var(--ease)}
+.js .reveal-clip{clip-path:inset(0 100% 0 0)}
 .reveal-clip.in-view{clip-path:inset(0 0 0 0)}
 
 @media(prefers-reduced-motion:reduce){
@@ -349,33 +349,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 }
 .work-item:hover img{transform:scale(1.06);filter:brightness(.8)}
 
-/* === TESTIMONIALS === */
-#testimonials{background:var(--bg-alt)}
-.testimonial-grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:16px;margin-top:8px;
-}
-.testimonial-card{
-  background:var(--bg-alt);border:1px solid var(--border);
-  border-radius:var(--radius-lg);padding:28px 24px;position:relative;
-  transition:transform .4s var(--ease),box-shadow .4s;
-}
-.testimonial-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
-.testimonial-card::before{
-  content:"\201C";position:absolute;top:10px;left:20px;
-  font-size:3rem;color:var(--accent);opacity:.12;font-family:var(--font-fancy);
-}
-.rating{color:var(--gold);font-size:.95rem;letter-spacing:2px;margin-bottom:4px}
-.testimonial-text{margin:12px 0;line-height:1.7;color:var(--text-light);font-style:italic;font-size:.92rem}
-.testimonial-author{display:flex;align-items:center;gap:12px;margin-top:16px}
-.testimonial-avatar{
-  width:42px;height:42px;border-radius:50%;background:var(--accent);
-  display:flex;align-items:center;justify-content:center;
-  color:#fff;font-weight:700;font-size:.85rem;flex-shrink:0;
-}
-.testimonial-name{font-weight:700;font-size:.92rem;color:var(--text)}
-.testimonial-service{font-size:.78rem;color:var(--text-light)}
-
 /* === BUSINESS INFO === */
 .info-grid{
   display:grid;grid-template-columns:repeat(3,1fr);
@@ -552,33 +525,6 @@ button[type=submit]:disabled{opacity:.6;cursor:default;transform:none}
 }
 .day-checkbox label:hover{border-color:var(--accent)}
 
-/* === IMAGE UPLOAD === */
-.upload-area{
-  border:1px dashed rgba(255,255,255,.25);
-  border-radius:var(--radius);padding:28px 20px;
-  text-align:center;cursor:pointer;transition:.2s;
-  background:rgba(255,255,255,.04);
-}
-.upload-area:hover,.upload-area.drag-over{
-  border-color:var(--accent);background:rgba(255,255,255,.08);
-}
-.upload-icon{font-size:1.8rem;margin-bottom:6px;opacity:.5}
-.upload-text{margin:0 0 4px;font-weight:600;font-size:.85rem;color:rgba(255,255,255,.7)}
-.upload-hint{margin:0;font-size:.75rem;color:rgba(255,255,255,.4)}
-.upload-previews{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-.upload-preview{
-  position:relative;width:80px;height:80px;
-  border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,.15);
-}
-.upload-preview img{width:100%;height:100%;object-fit:cover}
-.upload-preview .remove-btn{
-  position:absolute;top:3px;right:3px;
-  width:20px;height:20px;border-radius:50%;border:none;
-  background:rgba(0,0,0,.6);color:#fff;font-size:11px;
-  cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;
-}
-.upload-preview .remove-btn:hover{background:#EF4444}
-
 /* === FAQ === */
 #faq{background:var(--bg-alt)}
 .faq-container{max-width:700px;margin:8px auto 0}
@@ -706,10 +652,6 @@ footer a:hover{color:#fff}
   .whatsapp-btn .whatsapp-icon{width:14px;height:14px}
   footer{padding:22px 16px;font-size:.8rem}
   footer p{margin:4px 0}
-  .upload-area{padding:20px 14px}
-  .upload-icon{font-size:1.4rem}
-  .upload-text{font-size:.8rem}
-  .upload-hint{font-size:.7rem}
   .booking-container p.lead{font-size:.85rem}
   .checkbox-row{gap:8px}
   .checkbox-row label{font-size:.8rem}
