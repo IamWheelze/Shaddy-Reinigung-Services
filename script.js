@@ -28,18 +28,10 @@ navLinks.querySelectorAll('a').forEach(link => {
   });
 });
 
-// Advanced scroll animation system
+// Scroll reveal system — a single, elegant fade+scale, staggered per group
 (function(){
-  // Assign animation classes based on section context
-  document.querySelectorAll('#services .service-card.reveal').forEach((el, i) => {
-    el.classList.remove('reveal');
-    el.classList.add(i % 2 === 0 ? 'reveal-left' : 'reveal-right');
-  });
-  document.querySelectorAll('.work-item.reveal').forEach(el => {
-    el.classList.remove('reveal');
-    el.classList.add('reveal-clip');
-  });
-  document.querySelectorAll('.gallery-item.reveal').forEach(el => {
+  // Service cards and bento tiles get a soft scale-in; everything else fades up.
+  document.querySelectorAll('#services .service-card.reveal, .work-item.reveal').forEach(el => {
     el.classList.remove('reveal');
     el.classList.add('reveal-scale');
   });
@@ -57,7 +49,7 @@ navLinks.querySelectorAll('a').forEach(link => {
       const parent = e.target.parentElement;
       const siblings = groups.get(parent) || [e.target];
       const idx = siblings.indexOf(e.target);
-      const delay = idx * 100;
+      const delay = Math.min(idx * 90, 540); // cap stagger so long grids don't lag
       e.target.style.transitionDelay = delay + 'ms';
       e.target.classList.add('in-view');
       io.unobserve(e.target);
