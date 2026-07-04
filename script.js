@@ -211,7 +211,6 @@ const translations = {
     nav_services: 'Leistungen',
     nav_faq: 'FAQ',
     nav_pricing: 'Preise',
-    nav_ourwork: 'Unsere Arbeit',
     nav_gallery: 'Galerie',
     nav_booking: 'Buchen',
     nav_contact: 'Kontakt',
@@ -223,7 +222,6 @@ const translations = {
     hero_sub: 'Professionelle Reinigung für Zuhause und Gewerbe — versichert, gründlich, zuverlässig. Wir antworten innerhalb von 24 Stunden.',
     hero_whatsapp: 'WhatsApp',
     trust_insured: 'Vollständig versichert',
-    trust_clients: '200+ zufriedene Kunden',
     trust_response: 'Antwort in 24 Std.',
 
     // Services
@@ -339,8 +337,6 @@ const translations = {
     gallery3_label: 'Perfekte Verwandlung',
     gallery4_label: 'Wie Neu',
     // Our Work
-    ourwork_title: 'Unsere Arbeit',
-    ourwork_subtitle: 'Echte Ergebnisse von unseren Reinigungseinsätzen',
 
     gallery_title: 'Galerie',
     gallery_subtitle: 'Eindrücke unserer professionellen Reinigung',
@@ -429,7 +425,6 @@ const translations = {
     nav_services: 'Services',
     nav_faq: 'FAQ',
     nav_pricing: 'Pricing',
-    nav_ourwork: 'Our Work',
     nav_gallery: 'Gallery',
     nav_booking: 'Book',
     nav_contact: 'Contact',
@@ -441,7 +436,6 @@ const translations = {
     hero_sub: 'Professional cleaning for homes and businesses — insured, thorough, reliable. We reply within 24 hours.',
     hero_whatsapp: 'WhatsApp',
     trust_insured: 'Fully insured',
-    trust_clients: '200+ happy clients',
     trust_response: 'Reply within 24h',
 
     // Services
@@ -557,8 +551,6 @@ const translations = {
     gallery3_label: 'Perfect Transformation',
     gallery4_label: 'Good As New',
     // Our Work
-    ourwork_title: 'Our Work',
-    ourwork_subtitle: 'Real results from our cleaning projects',
 
     gallery_title: 'Gallery',
     gallery_subtitle: 'Impressions of our professional cleaning',
